@@ -37,5 +37,5 @@ gulp peer1
 
 This application is in beta. Do not trust it to be a reliable store of data. Keep a copy of all the articles and files that you publish, so that if you need to, you can easily restore your data. Do not use Eduba for sensitive information.
 
-[holepunch]: holepunch.to
-[electron]: electronjs.org
+[holepunch]: https://holepunch.to
+[electron]: https://electronjs.org
