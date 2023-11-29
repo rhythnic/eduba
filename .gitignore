@@ -1,0 +1,7 @@
+node_modules
+renderer/node_modules
+/*.log
+
+data
+app
+dist
