@@ -35,7 +35,10 @@ const build = series(cleanBuild, parallel(buildRenderer, buildMain));
 function runBuild() {
   return runApp(
     BUILD_DIR,
-    appEnv(3000, "./data/build-test", { MAIN_WINDOW_URL: void 0 })
+    appEnv(3000, "./data/build-test", {
+      MAIN_WINDOW_URL: void 0,
+      DHT_BOOTSTRAP_NODES: void 0,
+    })
   );
 }
 

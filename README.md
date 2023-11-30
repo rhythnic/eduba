@@ -8,9 +8,16 @@ In this repository is the initial proof of concept client. It is a desktop appli
 yarn
 ```
 
-## Build for your OS
+## Run without packaging
 
-Run these commands then look in the dist folder for a file that can be installed on your OS.
+```bash
+yarn build
+yarn start
+```
+
+## Create Installer for Your OS
+
+Look for a package installer in the `dist` folder.
 
 ```bash
 yarn build
@@ -19,8 +26,6 @@ yarn dist
 
 ## Develop
 
-Install gulp-cli
-
 ```bash
 npm install -g gulp-cli
 ```
@@ -28,9 +33,17 @@ npm install -g gulp-cli
 Run these commands in separate processes
 
 ```bash
+# Run Preact app in development mode
 gulp renderer
+
+# Start a local DHT testnet
 gulp dht
+
+# Run the electron app as pper 1
 gulp peer1
+
+# Run the electron app as peer 2
+gulp peer2
 ```
 
 ## Warning

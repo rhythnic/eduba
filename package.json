@@ -9,6 +9,7 @@
     "email": "nbaroni@tuta.io"
   },
   "scripts": {
+    "start": "gulp runBuild",
     "build": "gulp build",
     "pack": "electron-builder --dir",
     "dist": "electron-builder"
