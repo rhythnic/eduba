@@ -44,7 +44,7 @@ gulp renderer
 # Start a local DHT testnet
 gulp dht
 
-# Run the electron app as pper 1
+# Run the electron app as peer 1
 gulp peer1
 
 # Run the electron app as peer 2
