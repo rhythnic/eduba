@@ -15,6 +15,11 @@ yarn build
 yarn start
 ```
 
+You should be able to access these publishers. Click the "+" sign to open a new tab and enter one of these links in the text field.
+
+- bsk483aq99zputxmmguj3oxjtj79umq66xe9zixd1s8qrhhta34o/articles/1701224812473
+- 1huqogtdh3mm9wh7f4nehcbzx8indrtijo4z7fkorrgtrf6w1n8o/articles/1701224891736
+
 ## Create Installer for Your OS
 
 Look for a package installer in the `dist` folder.
