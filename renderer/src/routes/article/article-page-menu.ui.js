@@ -20,6 +20,7 @@ export default function ArticleMenu() {
   const publisher = ctrl.state.publisher.value;
   const article = ctrl.state.article.value;
   const isPublisherArticle = ctrl.isPublisherArticle.value;
+  const signedIn = ctrl.authStore.state.sessionActive.value;
 
   return (
     <div class="dropdown dropdown-bottom dropdown-end">
@@ -36,7 +37,7 @@ export default function ArticleMenu() {
             Share
           </a>
         </li>
-        {isPublisherArticle && !publisher.subscribed && (
+        {signedIn && isPublisherArticle && !publisher.subscribed && (
           <li>
             <a onClick={ctrl.subscribeToPublisher}>
               <StarIcon class="w-6 h-6 text-inherit" />
@@ -44,7 +45,7 @@ export default function ArticleMenu() {
             </a>
           </li>
         )}
-        {isPublisherArticle && publisher.subscribed && (
+        {signedIn && isPublisherArticle && publisher.subscribed && (
           <li>
             <a onClick={ctrl.unsubscribeFromPublisher}>
               <StarIcon class="w-6 h-6 text-inherit" />
@@ -52,12 +53,14 @@ export default function ArticleMenu() {
             </a>
           </li>
         )}
-        <li>
-          <a onClick={ctrl.openEditBookmark}>
-            <BookmarkIcon class="w-6 h-6 text-inherit" />
-            Bookmark
-          </a>
-        </li>
+        {signedIn && (
+          <li>
+            <a onClick={ctrl.openEditBookmark}>
+              <BookmarkIcon class="w-6 h-6 text-inherit" />
+              Bookmark
+            </a>
+          </li>
+        )}
         {!isPublisherArticle && (
           <li>
             <TabLink

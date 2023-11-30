@@ -87,7 +87,7 @@ class PublisherService {
       publisher.article
     );
     const userPublisher = await this.userPublisherService.get(dbId);
-    if (userPublisher) {
+    if (userPublisher.meta("found")) {
       publisher.meta("pinned", userPublisher.pinned);
     }
     return publisher;

@@ -58,10 +58,21 @@ class UserPublisherService {
   }
 
   async find() {
+    if (!this.userService.sessionDbId) {
+      return [];
+    }
+
     return this.repo.find(this.userService.sessionDbId);
   }
 
   async get(id) {
+    if (!this.userService.sessionDbId) {
+      const userPublisher = new UserPublisher();
+      userPublisher.meta("id", id);
+      userPublisher.meta("found", false);
+      return userPublisher;
+    }
+
     return this.repo.get(this.userService.sessionDbId, id);
   }
 

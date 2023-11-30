@@ -32,6 +32,7 @@ export class ArticlePageController extends SignalStateModel {
     });
 
     this.appStore = spec.appStore;
+    this.authStore = spec.authStore;
     this.navStore = spec.navStore;
     this.publisherStore = spec.publisherStore;
     this.events = spec.events;

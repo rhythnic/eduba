@@ -50,10 +50,21 @@ class SubscriptionService {
   }
 
   async find() {
+    if (!this.userService.sessionDbId) {
+      return [];
+    }
+
     return this.repo.find(this.userService.sessionDbId);
   }
 
   async get(id) {
+    if (!this.userService.sessionDbId) {
+      const subscription = new Subscription();
+      subscription.meta("id", id);
+      subscription.meta("found", false);
+      return subscription;
+    }
+
     return this.repo.get(this.userService.sessionDbId, id);
   }
 

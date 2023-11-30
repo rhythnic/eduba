@@ -1,7 +1,8 @@
 node_modules
-renderer/node_modules
 /*.log
 
 data
 app
 dist
+
+renderer/size-plugin.json
