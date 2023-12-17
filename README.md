@@ -6,6 +6,9 @@ In this repository is the initial proof of concept client. It is a desktop appli
 
 ```bash
 yarn
+cd renderer
+yarn
+cd ..
 ```
 
 ## Run without packaging
