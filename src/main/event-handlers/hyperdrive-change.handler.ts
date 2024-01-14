@@ -11,7 +11,7 @@ import { ArticleChangeEvent, ArticleTextChangeEvent, AudioChangeEvent, ImageChan
 
 @injectable()
 export class HyperdriveChangeHandler implements EventHandler {
-    private readonly log: LogFunctions = log.scope(HyperdriveChangeHandler.name);
+    private readonly log: LogFunctions = log.scope("HyperdriveChangeHandler");
 
     static event = DbChangeEvent;
 

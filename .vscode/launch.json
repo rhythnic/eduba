@@ -16,7 +16,7 @@
         "cwd": "${workspaceFolder}",
         "console": "integratedTerminal",
         "env": {
-          "APP_DATA_DIRECTORY": "/home/rhythnic/code/rhythnic/eduba-wp/data"
+          "APP_DATA_DIRECTORY": "/home/rhythnic/code/rhythnic/eduba/data"
         }
       }
     ]

@@ -7,7 +7,7 @@ import { Clipboard } from "electron";
 
 @injectable()
 export class CopiedToClipboardHandler implements EventHandler {
-    private readonly log: LogFunctions = log.scope(CopiedToClipboardHandler.name);
+    private readonly log: LogFunctions = log.scope("CopiedToClipboardHandler");
 
     static event = CopiedToClipboardEvent;
 

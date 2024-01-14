@@ -5,7 +5,7 @@ import { injectable } from "inversify";
 
 @injectable()
 export class RendererErrorHandler implements EventHandler {
-    private readonly log: LogFunctions = log.scope(RendererErrorHandler.name);
+    private readonly log: LogFunctions = log.scope("RendererErrorHandler");
 
     static event = RendererErrorEvent;
     

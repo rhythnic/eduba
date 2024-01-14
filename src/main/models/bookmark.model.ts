@@ -5,6 +5,8 @@ import { Bookmark_v0_2 } from "../protocol-version/0.2/models/bookmark.model";
 import { Entity } from "./entity.model";
 
 export class Bookmark extends Entity implements Bookmark_v0_2 {
+  static entityType = "Bookmark";
+
   href?: string;
   parent?: string;
   title: string;

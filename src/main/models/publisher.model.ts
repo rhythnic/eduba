@@ -4,6 +4,8 @@ import { Publisher_v0_2 } from "../protocol-version/0.2/models/publisher.model";
 import { Entity } from "./entity.model";
 
 export class Publisher extends Entity implements Publisher_v0_2 {
+  static entityType = "Publisher";
+
   article: string;
   _subscribed?: boolean;
   _pinned?: boolean;

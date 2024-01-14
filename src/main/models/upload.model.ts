@@ -4,6 +4,8 @@ import { Upload_v0_2 } from "../protocol-version/0.2/models/upload.model";
 import { Entity } from "./entity.model";
 
 export class Upload extends Entity implements Upload_v0_2 {
+  static entityType = "Upload";
+
   ext?: string;
   fileName?: string;
   tags?: string[];

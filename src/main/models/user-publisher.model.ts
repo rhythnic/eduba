@@ -3,6 +3,8 @@ import { UserPublisher_v0_2 } from "../protocol-version/0.2/models/user-publishe
 import { Entity } from "./entity.model";
 
 export class UserPublisher extends Entity implements UserPublisher_v0_2 {
+  static entityType = "UserPublisher";
+
   coreName: string;
   pinned: boolean;
 

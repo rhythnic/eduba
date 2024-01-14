@@ -1,5 +1,5 @@
 import { EntityDto } from "../interfaces";
-import { Entity } from "@/main/models/entity.model";
+import { Entity, EntityClass } from "@/main/models/entity.model";
 
 export class EntityDtoFactory {
     static toDto<T extends Entity>(model: T): EntityDto {
@@ -8,7 +8,7 @@ export class EntityDtoFactory {
             _db: model._db,
             _found: model._found,
             _writable: model._writable,
-            _entityType: model.constructor.name,
+            _entityType: (model.constructor as EntityClass).entityType,
         }
     }
 }

@@ -11,7 +11,7 @@ import { BookmarkChangeEvent, PublisherChangeEvent, SubscriptionChangeEvent, Use
 
 @injectable()
 export class HyperbeeChangeHandler implements EventHandler {
-    private readonly log: LogFunctions = log.scope(HyperbeeChangeHandler.name);
+    private readonly log: LogFunctions = log.scope("HyperbeeChangeHandler");
 
     static event = DbChangeEvent;
 

@@ -12,7 +12,7 @@ import { BackupConfig } from "@/dtos/request/interfaces";
 
 @injectable()
 export class BackupService {
-  private readonly log: LogFunctions = log.scope(BackupService.name);
+  private readonly log: LogFunctions = log.scope("BackupService");
   
   constructor(
     @inject(TYPES.ElectronDialog) private readonly dialog: Dialog,

@@ -23,24 +23,24 @@ export class EventBinder {
         const { diContainer, events } = this;
 
         this.beeService.on(
-            DbChangeEvent.name,
+            DbChangeEvent.eventName,
             (e) => diContainer.get<Hndl.HyperbeeChangeHandler>(Hndl.HyperbeeChangeHandler).handleEvent(e)
         );
 
         this.driveService.on(
-            DbChangeEvent.name,
+            DbChangeEvent.eventName,
             (e) => diContainer.get<Hndl.HyperdriveChangeHandler>(Hndl.HyperdriveChangeHandler).handleEvent(e)
         );
 
-        events.on(Hndl.CopiedToClipboardHandler.event.name, (e) => {
+        events.on(Hndl.CopiedToClipboardHandler.event.eventName, (e) => {
             diContainer.get<Hndl.CopiedToClipboardHandler>(Hndl.CopiedToClipboardHandler).handleEvent(e)
         });
 
-        events.on(Hndl.RendererErrorHandler.event.name, (e) => {
+        events.on(Hndl.RendererErrorHandler.event.eventName, (e) => {
             diContainer.get<Hndl.RendererErrorHandler>(Hndl.RendererErrorHandler).handleEvent(e)
         });
 
-        events.on(Hndl.SessionStatusChangeHandler.event.name, (e) => {
+        events.on(Hndl.SessionStatusChangeHandler.event.eventName, (e) => {
             diContainer.get<Hndl.SessionStatusChangeHandler>(Hndl.SessionStatusChangeHandler).handleEvent(e)
         });
     }

@@ -5,6 +5,8 @@ import { Audio_v0_2 } from "../protocol-version/0.2/models/audio.model";
 import { Entity } from "./entity.model";
 
 export class Audio extends Entity implements Audio_v0_2 {
+  static entityType = "Audio";
+
   ext: AudioExtension;
   tags?: string[];
   title: string;

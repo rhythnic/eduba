@@ -11,7 +11,7 @@ import { DocumentRepository, DocumentRepositoryFactory } from "./common/document
 
 @injectable()
 export class UploadService {
-  private readonly log: LogFunctions = log.scope(UploadService.name);
+  private readonly log: LogFunctions = log.scope("UploadService");
 
   private repo: DocumentRepository<Upload>;
 

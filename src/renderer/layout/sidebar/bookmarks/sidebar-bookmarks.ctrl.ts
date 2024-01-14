@@ -16,11 +16,9 @@ export interface BookmarksControllerState {
 
 @injectable()
 export class SidebarBookmarksController extends ComponentController<never> {
-  public state = signalState<BookmarksControllerState>(
-    {
-      openFolderPath: []
-    }
-  );
+  public state = signalState<BookmarksControllerState>({
+    openFolderPath: []
+  });
 
   public activeList: Signal<BookmarkDto[]>;
 
@@ -32,7 +30,10 @@ export class SidebarBookmarksController extends ComponentController<never> {
   ) {
     super();
 
-    this.state._configure({ storage: this.storage, key: SidebarBookmarksController.name });
+    this.state._configure({
+      storage: this.storage,
+      key: "SidebarBookmarksController"
+    });
 
     this.activeList = computed(() => {
       const bookmarks = this.bookmarkStore.state.bookmarks.value;

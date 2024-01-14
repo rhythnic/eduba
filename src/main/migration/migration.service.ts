@@ -11,7 +11,7 @@ export class MigrationService {
         @inject(TYPES.AppConfig) private readonly config: AppConfig
     ){}
 
-    public async migrate(className: string, data: any): Promise<any> {
+    public async migrate(entityType: string, data: any): Promise<any> {
         if (!data) {
             return data;
         }
@@ -27,7 +27,7 @@ export class MigrationService {
         for (const ver of this.protocolVersions) {
             if (version >= ver) continue;
 
-            const { [className]: migrationClass } = migrationsByVersion[ver];
+            const { [entityType]: migrationClass } = migrationsByVersion[ver];
 
             if (migrationClass) {
                 // @TODO: Support dependency injection in migrations

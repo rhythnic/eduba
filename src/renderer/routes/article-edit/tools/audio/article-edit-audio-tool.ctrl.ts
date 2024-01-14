@@ -34,7 +34,7 @@ export class ArticleEditAudioToolController extends ComponentController<ArticleE
 
         this.form.state._configure({
             storage: this.storage,
-            key: `${ArticleEditAudioToolController.name}-form`
+            key: "ArticleEditAudioToolController-form"
         })
     }
 

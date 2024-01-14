@@ -9,7 +9,7 @@ import { DocumentRepository, DocumentRepositoryFactory } from "./common/document
 
 @injectable()
 export class ArticleService {
-  private readonly log: LogFunctions = log.scope(ArticleService.name);
+  private readonly log: LogFunctions = log.scope("ArticleService");
 
   private readonly repo: DocumentRepository<Article>;
 

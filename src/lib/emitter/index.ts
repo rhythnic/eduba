@@ -1,5 +1,10 @@
 import { EventEmitter, captureRejectionSymbol } from "events";
 
+export interface EventClass {
+  new (...args: unknown[]): unknown;
+  eventName: string;
+}
+
 export class Event {
   constructor(init: Record<string, unknown>) {
       Object.assign(this, init);
@@ -17,6 +22,6 @@ export class Emitter extends EventEmitter {
   }
 
   dispatch(event: Event) {
-    this.emit(event.constructor.name, event);
+    this.emit((event.constructor as EventClass).eventName, event);
   }
 }

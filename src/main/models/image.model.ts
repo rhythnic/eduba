@@ -5,6 +5,8 @@ import { Image_v0_2 } from "../protocol-version/0.2/models/image.model";
 import { Entity } from "./entity.model";
 
 export class Image extends Entity implements Image_v0_2 {
+  static entityType = "Image";
+
   alt: string;
   ext: ImageExtension;
   tags?: string[];

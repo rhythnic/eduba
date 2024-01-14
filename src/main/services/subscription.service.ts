@@ -10,7 +10,7 @@ import { DocumentRepository, DocumentRepositoryFactory } from "./common/document
 
 @injectable()
 export class SubscriptionService {
-  private readonly log: LogFunctions = log.scope(SubscriptionService.name);
+  private readonly log: LogFunctions = log.scope("SubscriptionService");
 
   private readonly repo: DocumentRepository<Subscription>;
 

@@ -48,15 +48,15 @@ export class IpcApiPreload {
     const result: Partial<EventSubscribers> = {};
 
     for (const eventClass of Object.values(MainEvents)) {
-      result[eventClass.name as MainEventName] = (callback: MainEventCallback) => {
+      result[eventClass.eventName as MainEventName] = (callback: MainEventCallback) => {
         const listener = (_: never, ...args: unknown[]) => {
           callback(...args);
         };
 
-        this.ipcRenderer.on(eventClass.name, listener);
+        this.ipcRenderer.on(eventClass.eventName, listener);
 
         return () => {
-            this.ipcRenderer.removeListener(eventClass.name, listener);
+            this.ipcRenderer.removeListener(eventClass.eventName, listener);
         }
       };
     }
@@ -68,8 +68,8 @@ export class IpcApiPreload {
       const result: Partial<EventPublishers> = {};
 
       for (const eventClass of Object.values(RendererEvents)) {
-          result[eventClass.name as RendererEventName] = (...args) => {
-            this.ipcRenderer.send(eventClass.name, ...args);
+          result[eventClass.eventName as RendererEventName] = (...args) => {
+            this.ipcRenderer.send(eventClass.eventName, ...args);
           }
       }
 

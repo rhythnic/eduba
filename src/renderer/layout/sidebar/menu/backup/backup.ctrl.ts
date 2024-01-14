@@ -41,7 +41,7 @@ export class BackupController extends ComponentController<BackupProps>{
   ) {
     super();
 
-    this.state._configure({ storage: this.storage, key: BackupController.name });
+    this.state._configure({ storage: this.storage, key: "BackupController" });
 
     this.form = new FormController<BackupFormState>(
       this.handleSubmit,
@@ -50,7 +50,7 @@ export class BackupController extends ComponentController<BackupProps>{
 
     this.form.state._configure({
       storage: this.storage,
-      key: `${BackupController.name}-form`
+      key: "BackupController-form"
     })
   }
 

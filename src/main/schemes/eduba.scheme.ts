@@ -16,7 +16,7 @@ import { HyperdriveService } from "@/lib/holepunch";
 
 @injectable()
 export class EdubaScheme {
-  private readonly log: LogFunctions = log.scope(EdubaScheme.name);
+  private readonly log: LogFunctions = log.scope("EdubaScheme");
   
   constructor(
     @inject(TYPES.ElectronDialog) private dialog: Dialog,

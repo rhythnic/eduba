@@ -18,11 +18,11 @@ export class AlertsController extends ComponentController<never>{
   ) {
     super();
 
-    this.events.on(AlertEvent.name, this.createAlert);
+    this.events.on(AlertEvent.eventName, this.createAlert);
   }
 
   destroy() {
-    this.events.off(AlertEvent.name, this.createAlert);
+    this.events.off(AlertEvent.eventName, this.createAlert);
   }
 
   createAlert = (alert: AlertEvent) => {

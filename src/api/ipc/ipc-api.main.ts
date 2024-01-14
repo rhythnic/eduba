@@ -18,14 +18,14 @@ export class IpcApiMain {
 
   listen(webContents: WebContents): void {
     for (const eventClass of Object.values(RendererEvents)) {
-      this.ipcMain.on(eventClass.name, (_, event) => {
+      this.ipcMain.on(eventClass.eventName, (_, event) => {
         this.events.dispatch(new eventClass(event));
       });
     }
 
     for (const eventClass of Object.values(MainEvents)) {
       this.events.on(
-        eventClass.name, (event: typeof eventClass) => webContents.send(eventClass.name, event)
+        eventClass.eventName, (event: typeof eventClass) => webContents.send(eventClass.eventName, event)
       );
     }
 

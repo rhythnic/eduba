@@ -27,7 +27,7 @@ export class AuthStore {
 
     this.initialize().catch(err => {
       console.error("Not able to restore session.");
-      appStore.reportError(err);
+      this.appStore.reportError(err);
     })
   }
 

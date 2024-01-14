@@ -1,17 +1,12 @@
 /**
  * JSON Document Repository API based on DB Storage
  */
-import { Struct, assert } from "superstruct";
-import { Entity } from "../../models/entity.model";
+import { assert } from "superstruct";
+import { Entity, EntityClass } from "../../models/entity.model";
 import { MigrationService } from "@/main/migration/migration.service";
 import { AppConfig } from "@/main/config";
 import { HyperbeeStorage, HyperdriveStorage } from "@/lib/holepunch";
 import { CollectionName } from "@/enums";
-
-export interface EntityClass<T> {
-  new (props: Partial<T> | null): T;
-  schema?: Struct;
-}
 
 export interface DocumentRepositoryFactory<T extends Entity> {
   (
@@ -60,7 +55,7 @@ export class DocumentRepository<T extends Entity> {
       }
     }
 
-    props = await this.migrationService.migrate(this.entityClass.name, props);
+    props = await this.migrationService.migrate(this.entityClass.entityType, props);
 
     if (this.entityClass.schema) {
       assert(props, this.entityClass.schema);
@@ -74,7 +69,7 @@ export class DocumentRepository<T extends Entity> {
   async get(_db: string, _id: string): Promise<T> {
     const db = await this.storage.db(_db);
     let props = await this.storage.get(db, _id);
-    props = await this.migrationService.migrate(this.entityClass.name, props);
+    props = await this.migrationService.migrate(this.entityClass.entityType, props);
     return this.toEntity(db, _id, props);
   }
 
@@ -89,7 +84,7 @@ export class DocumentRepository<T extends Entity> {
   async load(_db: string, _id: string): Promise<T> {
     const db = await this.storage.db(_db);
     let props = await this.storage.load(db, _id);
-    props = await this.migrationService.migrate(this.entityClass.name, props);
+    props = await this.migrationService.migrate(this.entityClass.entityType, props);
     return this.toEntity(db, _id, props);
   }
 

@@ -18,7 +18,7 @@ type Corestore = typeof Corestore;
 
 @injectable()
 export class UserService {
-  private readonly log: LogFunctions = log.scope(UserService.name);
+  private readonly log: LogFunctions = log.scope("UserService");
 
   private _sessionDbId: string | undefined;
 

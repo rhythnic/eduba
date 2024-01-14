@@ -13,7 +13,7 @@ import { DocumentRepository, DocumentRepositoryFactory } from "./common/document
 
 @injectable()
 export class PublisherService {
-  private readonly log: LogFunctions = log.scope(PublisherService.name);
+  private readonly log: LogFunctions = log.scope("PublisherService");
 
   private readonly repo: DocumentRepository<Publisher>;
 

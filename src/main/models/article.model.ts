@@ -5,6 +5,8 @@ import { Article_v0_2 } from "../protocol-version/0.2/models/article.model";
 import { Entity } from "./entity.model";
 
 export class Article extends Entity implements Article_v0_2 {
+  static entityType = "Article";
+  
   ext: ArticleContentExtension;
   tags?: string[];
   title?: string;

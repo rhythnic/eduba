@@ -33,7 +33,7 @@ export interface ActiveReport {
 
 @injectable()
 export class NavStore {
-  private readonly log: LogFunctions = log.scope(NavStore.name);
+  private readonly log: LogFunctions = log.scope("NavStore");
 
   public state = signalState<NavStoreState>({ tabs: [], url: "/" });
 
@@ -48,7 +48,7 @@ export class NavStore {
     @inject(AppStore) private readonly appStore: AppStore,
     @inject(TYPES.Route) private readonly route: IRoute
   ) {
-    this.state._configure({ storage: this.storage, key: NavStore.name });
+    this.state._configure({ storage: this.storage, key: "NavStore" });
 
     this.active = computed<ActiveReport>(() => {
       const url = this.state.url.value || "/";

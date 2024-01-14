@@ -11,7 +11,7 @@ import { DocumentRepository, DocumentRepositoryFactory } from "./common/document
 
 @injectable()
 export class ImageService {
-  private readonly log: LogFunctions = log.scope(ImageService.name);
+  private readonly log: LogFunctions = log.scope("ImageService");
 
   private readonly repo: DocumentRepository<Image>;
 

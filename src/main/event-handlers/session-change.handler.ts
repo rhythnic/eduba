@@ -12,7 +12,7 @@ import * as Constants from "@/constants"
 
 @injectable()
 export class SessionStatusChangeHandler implements EventHandler {
-    private readonly log: LogFunctions = log.scope(SessionStatusChangeHandler.name);
+    private readonly log: LogFunctions = log.scope("SessionStatusChangeHandler");
 
     static event = SessionStatusChangeEvent;
 

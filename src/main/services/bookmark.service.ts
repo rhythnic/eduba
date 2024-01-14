@@ -10,7 +10,7 @@ import { DocumentRepository, DocumentRepositoryFactory } from "./common/document
 
 @injectable()
 export class BookmarkService {
-  private readonly log: LogFunctions = log.scope(BookmarkService.name);
+  private readonly log: LogFunctions = log.scope("BookmarkService");
 
   private readonly repo: DocumentRepository<Bookmark>;
 

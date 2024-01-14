@@ -11,7 +11,7 @@ import { DocumentRepository, DocumentRepositoryFactory } from "./common/document
 
 @injectable()
 export class AudioService {
-  private readonly log: LogFunctions = log.scope(AudioService.name);
+  private readonly log: LogFunctions = log.scope("AudioService");
 
   private readonly repo: DocumentRepository<Audio>;
 

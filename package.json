@@ -1,6 +1,6 @@
 {
-  "name": "eduba-wp",
-  "productName": "eduba-wp",
+  "name": "eduba",
+  "productName": "eduba",
   "version": "0.2.0",
   "description": "My Electron application description",
   "main": ".webpack/main",
@@ -25,6 +25,7 @@
     "@heroicons/react": "^2.1.1",
     "@hyperswarm/testnet": "^3.1.4",
     "@preact/signals": "^1.2.2",
+    "@reforged/maker-appimage": "^3.3.2",
     "@tailwindcss/typography": "^0.5.10",
     "@types/node": "^20.10.5",
     "@types/pump": "^1.1.3",

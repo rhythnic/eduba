@@ -14,7 +14,7 @@ import { DocumentRepository, DocumentRepositoryFactory } from "./common/document
 
 @injectable()
 export class UserPublisherService {
-  private readonly log: LogFunctions = log.scope(UserPublisherService.name);
+  private readonly log: LogFunctions = log.scope("UserPublisherService");
 
   private readonly repo: DocumentRepository<UserPublisher>;
 

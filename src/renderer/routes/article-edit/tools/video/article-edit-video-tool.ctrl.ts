@@ -34,7 +34,7 @@ export class ArticleEditVideoToolController extends ComponentController<ArticleE
 
         this.form.state._configure({
             storage: this.storage,
-            key: `${ArticleEditVideoToolController.name}-form`
+            key: "ArticleEditVideoToolController-form"
         })
     }
 

@@ -6,6 +6,8 @@ export interface AlertAction {
 }
 
 export class AlertEvent {
+    static eventName = "AlertEvent";
+
     type: AlertType;
     message: string;
     timeout?: number;

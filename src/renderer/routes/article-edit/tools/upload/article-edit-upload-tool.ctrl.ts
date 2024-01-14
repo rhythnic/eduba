@@ -33,7 +33,7 @@ export class ArticleEditUploadToolController extends ComponentController<Article
 
         this.form.state._configure({
             storage: this.storage,
-            key: `${ArticleEditUploadToolController.name}-form`
+            key: "ArticleEditUploadToolController-form"
         })
     }
 

@@ -2,10 +2,16 @@
  * Entity
  * Base class for Models that are persisted with DocumentRepository
  */
-import { object, string } from "superstruct";
+import { Struct, object, string } from "superstruct";
 import { isoString } from "../../lib/common/validators";
 
 export const dbIdRegex = /[0-9a-z]{52}/i;
+
+export interface EntityClass<T = any> {
+  new (props: Partial<T> | null): T;
+  schema?: Struct;
+  entityType: string;
+}
 
 export class EntityMeta {
   version: string;

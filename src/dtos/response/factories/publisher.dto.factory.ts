@@ -28,11 +28,7 @@ export class PublisherDtoFactory {
 export class UserPublisherDtoFactory {
     static toDto(model: UserPublisher): UserPublisherDto {
         return {
-            _id: model._id,
-            _db: model._db,
-            _found: model._found,
-            _writable: model._writable,
-            _entityType: model.constructor.name,
+            ...EntityDtoFactory.toDto(model),
             pinned: model.pinned,
         }
     }

@@ -172,7 +172,7 @@ export abstract class DbService extends Emitter {
 
     return new Promise((resolve, reject) => {
       const respond = () => {
-        this.off(DbChangeEvent.name, eventHandler);
+        this.off(DbChangeEvent.eventName, eventHandler);
         this.exists(db, key).then(resolve, reject);
       };
 
@@ -184,7 +184,7 @@ export abstract class DbService extends Emitter {
       };
 
       const timer = setTimeout(respond, maxWait);
-      this.on(DbChangeEvent.name, eventHandler);
+      this.on(DbChangeEvent.eventName, eventHandler);
       this.load(db);
     });
   }

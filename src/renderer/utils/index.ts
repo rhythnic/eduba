@@ -12,6 +12,6 @@ export function styles(styleObj: Record<string, boolean>) {
   return result.join(" ");
 }
 
-export function last<T>(args: T[]): T | undefined {
-  return args[args.length - 1];
+export function last<T>(items?: T[]): T | undefined {
+  return Array.isArray(items) ? items[items.length - 1] : items;
 }

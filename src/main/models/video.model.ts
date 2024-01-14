@@ -5,6 +5,8 @@ import { Video_v0_2 } from "../protocol-version/0.2/models/video.model";
 import { Entity } from "./entity.model";
 
 export class Video extends Entity implements Video_v0_2 {
+  static entityType = "Video";
+
   ext: VideoExtension;
   title: string;
   tags?: string[];

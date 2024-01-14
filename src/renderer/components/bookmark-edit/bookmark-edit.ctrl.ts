@@ -42,7 +42,7 @@ export class BookmarkEditController extends ComponentController<BookmarkEditProp
 
     this.form.state._configure({
       storage: this.storage,
-      key: `${BookmarkEditController.name}-form`
+      key: "BookmarkEditController-form"
     });
   }
 

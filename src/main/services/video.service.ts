@@ -11,7 +11,7 @@ import { DocumentRepository, DocumentRepositoryFactory } from "./common/document
 
 @injectable()
 export class VideoService {
-  private readonly log: LogFunctions = log.scope(VideoService.name);
+  private readonly log: LogFunctions = log.scope("VideoService");
 
   private readonly repo: DocumentRepository<Video>;
 

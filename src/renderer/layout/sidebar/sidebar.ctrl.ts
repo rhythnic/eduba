@@ -22,7 +22,7 @@ export class SidebarController extends ComponentController<never>{
   }
 
   initialize(): void {
-    this.state._configure({ storage: this.storage, key: SidebarController.name });
+    this.state._configure({ storage: this.storage, key: "SidebarController" });
   }
 
   selectTab = ({ target }: Event) => {

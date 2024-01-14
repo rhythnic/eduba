@@ -32,7 +32,7 @@ export class ArticleEditLinkToolController extends ComponentController<ArticleEd
 
         this.form.state._configure({
             storage: this.storage,
-            key: `${ArticleEditLinkToolController.name}-form`
+            key: "ArticleEditLinkToolController-form"
         })
     }
 

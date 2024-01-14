@@ -1,6 +1,8 @@
 import { DbChangeType } from "../enums";
 
 export class DbChangeEvent {
+    static eventName = "DbChangeEvent";
+    
     type: DbChangeType;
     db: string;
     key: string;

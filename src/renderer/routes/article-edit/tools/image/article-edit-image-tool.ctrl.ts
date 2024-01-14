@@ -34,7 +34,7 @@ export class ArticleEditImageToolController extends ComponentController<ArticleE
 
         this.form.state._configure({
             storage: this.storage,
-            key: `${ArticleEditImageToolController.name}-form`
+            key: "ArticleEditImageToolController-form"
         })
     }
 
