@@ -19,13 +19,13 @@ export default function Sidebar() {
   return (
     <section class="p-4 w-96 flex flex-col h-full bg-base-300 text-base-content">
       <div class="flex justify-between mb-8">
-        <div class="tabs" onClick={ctrl.selectTab}>
+        <div class="tabs tabs-bordered" onClick={ctrl.selectTab}>
           {navTabs.map((navTab, tabIndex) => (
             <a
               key={tabIndex}
               data-index={tabIndex}
               class={styles({
-                "tab tab-bordered": true,
+                "tab": true,
                 "tab-active": ctrl.state.tabIndex.value === tabIndex,
               })}
             >
