@@ -3,6 +3,7 @@ export const TYPES = {
     Events: Symbol.for("Events"),
     ElectronStore: Symbol.for("ElectronStore"),
 
+    ElectronApp: Symbol.for("ElectronApp"),
     ElectronDialog: Symbol.for("ElectronDialog"),
     ElectronProtocol: Symbol.for("ElectronProtocol"),
     ElectronIpcMain: Symbol.for("ElectronIpcMain"),

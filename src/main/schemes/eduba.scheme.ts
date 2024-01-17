@@ -24,12 +24,6 @@ export class EdubaScheme {
     @inject(TYPES.HyperdriveService) private driveService: HyperdriveService
   ) {}
 
-  registerSchemesAsPrivileged(): void {
-    this.protocol.registerSchemesAsPrivileged([
-      { scheme: "eduba", privileges: { bypassCSP: true, stream: true } },
-    ]);
-  }
-
   registerHandler(): void {
     this.protocol.handle("eduba", this.handle.bind(this));
   }
