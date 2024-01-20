@@ -67,6 +67,9 @@ export const config: Options.Testrunner = {
             // custom application args
             appBinaryPath: './out/eduba-linux-x64/eduba',
             appArgs: []
+        },
+        'goog:chromeOptions': {
+            args: ['headless', 'disable-gpu']
         }
     }],
 
