@@ -65,6 +65,7 @@ export const config: Options.Testrunner = {
         // see https://webdriver.io/docs/wdio-electron-service/#configuration
         'wdio:electronServiceOptions': {
             // custom application args
+            appBinaryPath: './out/eduba-linux-x64/eduba',
             appArgs: []
         }
     }],
