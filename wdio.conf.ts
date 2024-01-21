@@ -65,7 +65,10 @@ export const config: Options.Testrunner = {
         // see https://webdriver.io/docs/wdio-electron-service/#configuration
         'wdio:electronServiceOptions': {
             // custom application args
-            appArgs: ['remote-debugging-port=9222']
+            appArgs: []
+        },
+        'goog:chromeOptions': {
+            args: ['--remote-debugging-port=9222']
         }
     }],
 
