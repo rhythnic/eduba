@@ -10,7 +10,7 @@ export const config: Options.Testrunner = {
     autoCompileOpts: {
         autoCompile: true,
         tsNodeOpts: {
-            project: './tsconfig.json',
+            project: './test/tsconfig.json',
             transpileOnly: true
         }
     },
@@ -66,10 +66,7 @@ export const config: Options.Testrunner = {
         'wdio:electronServiceOptions': {
             // custom application args
             appArgs: []
-        },
-        // 'goog:chromeOptions': {
-        //     args: ['--remote-debugging-port=9222']
-        // }
+        }
     }],
 
     //
@@ -119,27 +116,7 @@ export const config: Options.Testrunner = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    // services: ['electron'],
-    services: [
-        [
-          "electron",
-          {
-            binaryPath:
-              "../../workspace/wdio-electron-service-example/dist/mac/wdio-electron-service-example.app/Contents/MacOS/wdio-electron-service-example",
-            appArgs: [
-              "--disable-infobars",
-              "--disable-dev-shm-usage",
-              "--no-sandbox",
-              "--remote-debugging-port=9222",
-            ],
-            chromedriver: {
-            //   port: 9521,
-              logFileName: "wdio-chromedriver.log",
-            },
-          },
-        ],
-    ],
-    // port: 9521,
+    services: ['electron'],
 
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
