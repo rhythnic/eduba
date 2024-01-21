@@ -65,11 +65,7 @@ export const config: Options.Testrunner = {
         // see https://webdriver.io/docs/wdio-electron-service/#configuration
         'wdio:electronServiceOptions': {
             // custom application args
-            appBinaryPath: './out/eduba-linux-x64/eduba',
-            appArgs: []
-        },
-        'goog:chromeOptions': {
-            args: ['headless', 'disable-gpu']
+            appArgs: ['remote-debugging-port=9222']
         }
     }],
 
