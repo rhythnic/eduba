@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="200mm"
+   height="200mm"
+   viewBox="0 0 200 200"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   sodipodi:docname="icon.svg"
+   inkscape:export-filename="/home/rhythnic/Documents/Work/Eduba/Design/icon.png"
+   inkscape:export-xdpi="130.05"
+   inkscape:export-ydpi="130.05"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.53165938"
+     inkscape:cx="377.12116"
+     inkscape:cy="427.90555"
+     inkscape:window-width="1866"
+     inkscape:window-height="1016"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     width="200mm" />
+  <defs
+     id="defs2">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="-14.920388 : 77.489334 : 1"
+       inkscape:vp_y="0 : 743.63107 : 0"
+       inkscape:vp_z="185.07961 : 77.489334 : 1"
+       inkscape:persp3d-origin="85.079612 : 52.701634 : 1"
+       id="perspective352" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       id="rect1039"
+       style="fill:#550000;fill-rule:evenodd;stroke-width:0.262347"
+       d="m 13.616401,2.5734723 v 0.029754 a 11.330831,11.299478 0 0 0 -0.01894,0 A 11.330831,11.299478 0 0 0 2.2669045,13.902954 11.330831,11.299478 0 0 0 13.597462,25.20214 a 11.330831,11.299478 0 0 0 0.01894,-5.44e-4 v 0.04004 H 25.416569 V 175.42262 H 13.616401 v 0.0297 a 11.330832,11.299479 0 0 0 -0.01894,0 11.330832,11.299479 0 0 0 -11.3305575,11.29973 11.330832,11.299479 0 0 0 11.3305575,11.29919 11.330832,11.299479 0 0 0 0.01894,-5.5e-4 v 0.04 h 65.008857 a 11.330832,11.330611 0 0 0 0.258065,0.009 11.330832,11.330611 0 0 0 11.330565,-11.33057 11.330832,11.330611 0 0 0 -11.260772,-11.32948 v -0.0179 H 64.8877 V 135.33202 A 39.097431,43.05992 0 0 1 42.985623,96.671314 39.097431,43.05992 0 0 1 64.8877,58.010081 V 25.241636 h 13.737558 a 11.330831,11.330611 0 0 0 0.258065,0.0097 A 11.330831,11.330611 0 0 0 90.213888,13.92081 11.330831,11.330611 0 0 0 78.953116,2.5913268 v -0.01785 z" />
+    <path
+       id="path171"
+       style="fill:#550000;fill-rule:evenodd;stroke-width:0.253355"
+       d="m 186.8145,15.746969 v 0.02775 a 11.330831,10.53818 0 0 1 0.0189,0 11.330831,10.53818 0 0 1 11.33056,10.538413 11.330831,10.53818 0 0 1 -11.33056,10.537909 11.330831,10.53818 0 0 1 -0.0189,-5.08e-4 v 0.03734 H 175.01433 V 176.95048 h 11.80017 v 0.0277 a 11.330832,10.538181 0 0 1 0.0189,0 11.330832,10.538181 0 0 1 11.33056,10.53841 11.330832,10.538181 0 0 1 -11.33056,10.53791 11.330832,10.538181 0 0 1 -0.0189,-5.1e-4 v 0.0373 h -65.00889 a 11.330832,10.567216 0 0 1 -0.25807,0.008 11.330832,10.567216 0 0 1 -11.33057,-10.56718 11.330832,10.567216 0 0 1 11.26078,-10.56616 v -0.0167 h 14.06542 V 139.56097 A 39.097431,40.158776 0 0 0 157.44526,103.50501 39.097431,40.158776 0 0 0 135.54317,67.448559 V 36.887875 h -13.73756 a 11.330831,10.567216 0 0 1 -0.25807,0.009 11.330831,10.567216 0 0 1 -11.33057,-10.567137 11.330831,10.567216 0 0 1 11.26078,-10.566164 v -0.01665 z" />
+  </g>
+</svg>
