@@ -1,4 +1,4 @@
-<picture style="display:block; text-align: center; margin-bottom: 12px;">
+<picture>
     <source
         media="(prefers-color-scheme: light)"
         srcset="https://github.com/rhythnic/eduba/assets/8162640/57c04d5d-f65a-4e45-931a-36ed5ea35cff"
@@ -9,7 +9,8 @@
     >
     <img
         alt="Eduba Logo"
-        style="visibility:visible; max-width:300px;"
+        width="300px"
+        height="auto"
         src="https://github.com/rhythnic/eduba/assets/8162640/57c04d5d-f65a-4e45-931a-36ed5ea35cff">
 </picture>
 
