@@ -9,8 +9,8 @@
     >
     <img
         alt="Eduba Logo"
-        width="300px"
-        height="auto"
+        width="500px"
+        style="margin:0 auto;
         src="https://github.com/rhythnic/eduba/assets/8162640/57c04d5d-f65a-4e45-931a-36ed5ea35cff">
 </picture>
 
