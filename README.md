@@ -10,10 +10,10 @@
     <img
         alt="Eduba Logo"
         width="500px"
-        style="margin:0 auto;
         src="https://github.com/rhythnic/eduba/assets/8162640/57c04d5d-f65a-4e45-931a-36ed5ea35cff">
 </picture>
 
+## About
 Eduba is a protocol for publishing linked articles peer-to-peer on the [Holepunch platform][holepunch].
 
 In this repository is the initial proof of concept client. It is a desktop application built on [Electron][electron].
