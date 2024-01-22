@@ -9,10 +9,9 @@
     >
     <img
         alt="Eduba Logo"
-        style="width:50%;height:auto;"
+        style="visibility:visible; max-width:300px;"
         src="https://github.com/rhythnic/eduba/assets/8162640/57c04d5d-f65a-4e45-931a-36ed5ea35cff">
 </picture>
-
 
 Eduba is a protocol for publishing linked articles peer-to-peer on the [Holepunch platform][holepunch].
 
