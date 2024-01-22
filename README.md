@@ -1,16 +1,24 @@
-<p align="center">
+<picture style="display:block; text-align: center; margin-bottom: 12px;">
+    <source
+        media="(prefers-color-scheme: light)"
+        srcset="https://github.com/rhythnic/eduba/assets/8162640/57c04d5d-f65a-4e45-931a-36ed5ea35cff"
+    >
     <img
-        src="https://github.com/rhythnic/eduba/assets/8162640/57c04d5d-f65a-4e45-931a-36ed5ea35cff#gh-light-mode-only"
-        style="width:50%;height:auto"
-    />
-</p>
- 
-<p align="center">
+        alt="Eduba Logo"
+        style="width:50%;height:auto;"
+        src="https://github.com/rhythnic/eduba/assets/8162640/57c04d5d-f65a-4e45-931a-36ed5ea35cff">
+</picture>
+
+<picture style="display:block; text-align: center; margin-bottom: 12px;">
+    <source
+        media="(prefers-color-scheme: dark)"
+        srcset="https://github.com/rhythnic/eduba/assets/8162640/cbe7b56e-31ba-49a2-a28a-7d25e1d8a586"
+    >
     <img
-        src="https://github.com/rhythnic/eduba/assets/8162640/cbe7b56e-31ba-49a2-a28a-7d25e1d8a586#gh-dark-mode-only"
-        style="width:50%;height:auto"
-    />
-</p>
+        alt="Eduba Logo"
+        style="width:50%;height:auto;"
+        src="https://github.com/rhythnic/eduba/assets/8162640/cbe7b56e-31ba-49a2-a28a-7d25e1d8a586">
+</picture>
 
 Eduba is a protocol for publishing linked articles peer-to-peer on the [Holepunch platform][holepunch].
 
