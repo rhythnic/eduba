@@ -17,7 +17,7 @@ jobs:
       - name: Install required binaries
         run: |
           sudo apt update
-          sudo apt install -y rpm
+          sudo apt install -y libusb-1.0-0-dev libudev-dev rpm
 
       - name: Check out Git repository
         uses: actions/checkout@v4
