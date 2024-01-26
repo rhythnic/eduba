@@ -14,8 +14,8 @@ jobs:
         name: version
         run: long="${{ github.ref }}"; version="${long#"refs/tags/v"}"; echo "version=${version}" >> "$GITHUB_ENV"
 
-      - name: test-version-string
-        run: echo "Version ${version}"
+      - name: check-token variable
+        run: echo "${GITHUB_TOKEN} and ${{github.token}}"
 
       # - name: Install required binaries
       #   run: |
@@ -40,7 +40,7 @@ jobs:
       #   uses: softprops/action-gh-release@v1
       #   with:
       #     files: |
-      #       ./out/make/AppImage/x64/eduba-${{steps.version.outputs.version}}-x64.AppImage
-      #       ./out/make/deb/x64/eduba_${{steps.version.outputs.version}}_amd64.deb
-      #       ./out/make/rpm/x64/eduba-${{steps.version.outputs.version}}-1.x86_64.rpm
-      #       ./out/make/zip/linux/x64/eduba-linux-x64-${{steps.version.outputs.version}}.zip
+      #       ./out/make/AppImage/x64/eduba-${version}-x64.AppImage
+      #       ./out/make/deb/x64/eduba_${version}_amd64.deb
+      #       ./out/make/rpm/x64/eduba-${version}-1.x86_64.rpm
+      #       ./out/make/zip/linux/x64/eduba-linux-x64-${version}.zip
