@@ -2,9 +2,8 @@ run-name: publish by ${{ github.actor }}
 
 # Run this workflow whenever a tag that starts with v is pushed to github.
 on:
-  push:
-    tags:
-      - 'v*'
+  release:
+    types: ['published']
 
 jobs:
   publish-linux:
@@ -14,30 +13,33 @@ jobs:
       - name: version
         run: long="${{ github.ref }}"; version=${long#"refs/tags/v"}; echo "version=${version}" >> $GITHUB_ENV
 
-      - name: Install required binaries
-        run: |
-          sudo apt update
-          sudo apt install -y libusb-1.0-0-dev libudev-dev rpm
+      - name: test-version-string
+        run: 'echo "Version: ${{steps.version.outputs.version}}"'
 
-      - name: Check out Git repository
-        uses: actions/checkout@v4
+      # - name: Install required binaries
+      #   run: |
+      #     sudo apt update
+      #     sudo apt install -y libusb-1.0-0-dev libudev-dev rpm
 
-      - name: Install Node.js & NPM
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20.11.0'
+      # - name: Check out Git repository
+      #   uses: actions/checkout@v4
 
-      - name: Install repo dependencies
-        run: yarn
+      # - name: Install Node.js & NPM
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: '20.11.0'
 
-      - name: Make packages
-        run: yarn make
+      # - name: Install repo dependencies
+      #   run: yarn
 
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: |
-            ./out/make/AppImage/x64/eduba-${{steps.version.outputs.version}}-x64.AppImage
-            ./out/make/deb/x64/eduba_${{steps.version.outputs.version}}_amd64.deb
-            ./out/make/rpm/x64/eduba-${{steps.version.outputs.version}}-1.x86_64.rpm
-            ./out/make/zip/linux/x64/eduba-linux-x64-${{steps.version.outputs.version}}.zip
+      # - name: Make packages
+      #   run: yarn make
+
+      # - name: Release
+      #   uses: softprops/action-gh-release@v1
+      #   with:
+      #     files: |
+      #       ./out/make/AppImage/x64/eduba-${{steps.version.outputs.version}}-x64.AppImage
+      #       ./out/make/deb/x64/eduba_${{steps.version.outputs.version}}_amd64.deb
+      #       ./out/make/rpm/x64/eduba-${{steps.version.outputs.version}}-1.x86_64.rpm
+      #       ./out/make/zip/linux/x64/eduba-linux-x64-${{steps.version.outputs.version}}.zip
