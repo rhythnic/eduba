@@ -18,7 +18,7 @@ jobs:
         name: version
         run: |
           long="${{ github.ref }}"; version="${long#"refs/tags/v"}"; echo "version=${version}" >> "$GITHUB_ENV"
-          echo "version=${{version}}"
+          echo "version=${version}"
 
       # - name: Install required binaries
       #   run: |
