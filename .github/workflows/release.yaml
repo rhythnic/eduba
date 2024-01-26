@@ -33,7 +33,7 @@ jobs:
       #   with:
       #     node-version: '20.11.0'
 
-      # - name: Install repo dependencies
+      # - name: Install repo dependenciess
       #   run: yarn
 
       # - name: Make packages
