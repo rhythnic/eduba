@@ -10,11 +10,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: version
+      - id: version
+        name: version
         run: long="${{ github.ref }}"; version="${long#"refs/tags/v"}"; echo "version=${version}" >> "$GITHUB_ENV"
 
       - name: test-version-string
-        run: echo "Version ${{version}}"
+        run: echo "Version ${version}"
 
       # - name: Install required binaries
       #   run: |
