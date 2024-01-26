@@ -1,5 +1,7 @@
 run-name: ${{ github.ref }} - ${{ github.actor }}
 
+concurrency: 1
+
 permissions:
   contents: write
 
@@ -10,7 +12,7 @@ on:
       - "v*.*.*"
 
 jobs:
-  publish-linux:
+  release-linux:
     runs-on: ubuntu-latest
 
     steps:
@@ -33,17 +35,77 @@ jobs:
         with:
           node-version: '20.11.0'
 
-      - name: Install repo dependenciess
+      - name: Install repo dependencies
         run: yarn
 
       - name: Make packages
         run: yarn make
 
       - name: Release
-        uses: softprops/action-gh-release@v1
+        uses: ncipollo/release-action@v1
         with:
-          files: |
-            ./out/make/AppImage/x64/eduba-${version}-x64.AppImage
-            ./out/make/deb/x64/eduba_${version}_amd64.deb
-            ./out/make/rpm/x64/eduba-${version}-1.x86_64.rpm
-            ./out/make/zip/linux/x64/eduba-linux-x64-${version}.zip
+          artifactErrorsFailBuild: true
+          generateReleaseNotes: true
+          artifacts: "./out/make/**/*.{AppImage,deb,rpm,zip}"
+
+  # release-windows:
+  #   runs-on: windows-latest
+
+  #   steps:
+  #     - id: version
+  #       name: version
+  #       run: |
+  #         long="${{ github.ref }}"; version="${long#"refs/tags/v"}"; echo "version=${version}" >> "$GITHUB_ENV"
+  #         echo "version=${version}"
+
+  #     - name: Check out Git repository
+  #       uses: actions/checkout@v4
+
+  #     - name: Install Node.js & NPM
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: '20.11.0'
+
+  #     - name: Install repo dependencies
+  #       run: yarn
+
+  #     - name: Make packages
+  #       run: yarn make
+
+  #     - name: Release
+  #       uses: ncipollo/release-action@v1
+  #       with:
+  #         allowUpdates: true
+  #         artifactErrorsFailBuild: true
+  #         artifacts: "./out/make/**/*.exe"
+
+  # release-macos:
+  #   runs-on: macos-latest
+
+  #   steps:
+  #     - id: version
+  #       name: version
+  #       run: |
+  #         long="${{ github.ref }}"; version="${long#"refs/tags/v"}"; echo "version=${version}" >> "$GITHUB_ENV"
+  #         echo "version=${version}"
+
+  #     - name: Check out Git repository
+  #       uses: actions/checkout@v4
+
+  #     - name: Install Node.js & NPM
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: '20.11.0'
+
+  #     - name: Install repo dependencies
+  #       run: yarn
+
+  #     - name: Make packages
+  #       run: yarn make
+
+  #     - name: Release
+  #       uses: ncipollo/release-action@v1
+  #       with:
+  #         allowUpdates: true
+  #         artifactErrorsFailBuild: true
+  #         artifacts: "./out/make/**/*.dmg"

@@ -14,31 +14,33 @@ import { rendererConfig } from './webpack.renderer.config';
 const config: ForgeConfig = {
   packagerConfig: {
     asar: true,
-    icon: './images/icon' // no file extension required
+    icon: './icons/icon' // no file extension required
   },
   rebuildConfig: {},
   makers: [
     new MakerSquirrel({
       // iconUrl: 'https://url/to/icon.ico',
-      setupIcon: './images/icon.ico'
+      setupIcon: './icons/icon.ico',
     }),
     new MakerZIP({}, ['linux']),
     new MakerRpm({
       options: {
-        icon: './images/icon.png'
+        icon: './icons/icon.png'
       }
     }),
     new MakerDeb({
       options: {
-        icon: './images/icon.png'
+        icon: './icons/icon.png'
       }
     }),
     new MakerAppImage({
         options: {
-          icon: './images/icon.png'
+          icon: './icons/icon.png'
         }
     }),
-    new MakerDMG({})
+    new MakerDMG({
+      icon: './icons/icon.icns'
+    })
   ],
   plugins: [
     new AutoUnpackNativesPlugin({}),
