@@ -1,0 +1,54 @@
+run-name: release by ${{ github.actor }}
+
+permissions:
+  contents: write
+
+# Run this workflow whenever a tag that starts with v is pushed to github.
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  publish-linux:
+    runs-on: ubuntu-latest
+
+    steps:
+      - id: version
+        name: version
+        run: |
+          long="${{ github.ref }}"; version="${long#"refs/tags/v"}"; echo "version=${version}" >> "$GITHUB_ENV"
+          echo "version=${{version}}"
+
+      # - name: Install required binaries
+      #   run: |
+      #     sudo apt update
+      #     sudo apt install -y libusb-1.0-0-dev libudev-dev rpm
+
+      - name: Check out Git repository
+        uses: actions/checkout@v4
+
+      # - name: Install Node.js & NPM
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: '20.11.0'
+
+      # - name: Install repo dependencies
+      #   run: yarn
+
+      # - name: Make packages
+      #   run: yarn make
+
+      - name: Build
+        run: echo ${{ github.sha }} > Release.txt
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: Release.txt
+        # with:
+        #   files: |
+        #     ./out/make/AppImage/x64/eduba-${version}-x64.AppImage
+        #     ./out/make/deb/x64/eduba_${version}_amd64.deb
+        #     ./out/make/rpm/x64/eduba-${version}-1.x86_64.rpm
+        #     ./out/make/zip/linux/x64/eduba-linux-x64-${version}.zip
