@@ -11,10 +11,10 @@ jobs:
 
     steps:
       - name: version
-        run: long="${{ github.ref }}"; version=${long#"refs/tags/v"}; echo "version=${version}" >> $GITHUB_ENV
+        run: long="${{ github.ref }}"; version="${long#"refs/tags/v"}"; echo "version=${version}" >> "$GITHUB_ENV"
 
       - name: test-version-string
-        run: 'echo "Version: ${{steps.version.outputs.version}}"'
+        run: echo "Version ${{version}}"
 
       # - name: Install required binaries
       #   run: |
