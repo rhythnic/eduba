@@ -6,10 +6,11 @@ permissions:
   contents: write
 
 # Run this workflow whenever a tag that starts with v is pushed to github.
-on:
-  push:
-    tags:
-      - "v*.*.*"
+on: [push]
+# on:
+#   push:
+#     tags:
+#       - "v*.*.*"
 
 jobs:
   # release-linux:
@@ -74,26 +75,26 @@ jobs:
     steps:
       - name: Install required packages
         run: |
-          python3 -m pip install packaging
+          echo python3 --version
 
-      - name: Check out Git repository
-        uses: actions/checkout@v4
+      # - name: Check out Git repository
+      #   uses: actions/checkout@v4
 
-      - name: Install Node.js & NPM
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20.11.0'
+      # - name: Install Node.js & NPM
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: '20.11.0'
 
-      - name: Install repo dependencies
-        run: yarn
+      # - name: Install repo dependencies
+      #   run: yarn
 
-      - name: Make packages
-        run: yarn make
+      # - name: Make packages
+      #   run: yarn make
 
-      - name: Release
-        uses: ncipollo/release-action@v1
-        with:
-          allowUpdates: "true"
-          artifactErrorsFailBuild: "true"
-          prerelease: "true"
-          artifacts: "out/make/**/*.dmg"
+      # - name: Release
+      #   uses: ncipollo/release-action@v1
+      #   with:
+      #     allowUpdates: "true"
+      #     artifactErrorsFailBuild: "true"
+      #     prerelease: "true"
+      #     artifacts: "out/make/**/*.dmg"
