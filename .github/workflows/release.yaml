@@ -44,8 +44,9 @@ jobs:
       - name: Release
         uses: ncipollo/release-action@v1
         with:
-          artifactErrorsFailBuild: true
-          generateReleaseNotes: true
+          artifactErrorsFailBuild: "true"
+          generateReleaseNotes: "true"
+          prerelease: "true"
           artifacts: "./out/make/**/*.{AppImage,deb,rpm,zip}"
 
   # release-windows:
