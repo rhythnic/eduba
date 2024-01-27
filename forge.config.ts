@@ -22,17 +22,17 @@ const config: ForgeConfig = {
       // iconUrl: 'https://url/to/icon.ico',
       setupIcon: './icons/icon.ico',
     }),
-    // new MakerZIP({}, ['linux']),
-    // new MakerRpm({
-    //   options: {
-    //     icon: './icons/icon.png'
-    //   }
-    // }),
-    // new MakerDeb({
-    //   options: {
-    //     icon: './icons/icon.png'
-    //   }
-    // }),
+    new MakerZIP({}, ['linux']),
+    new MakerRpm({
+      options: {
+        icon: './icons/icon.png'
+      }
+    }),
+    new MakerDeb({
+      options: {
+        icon: './icons/icon.png'
+      }
+    }),
     new MakerAppImage({
         options: {
           icon: './icons/icon.png'

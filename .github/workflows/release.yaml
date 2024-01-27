@@ -43,8 +43,33 @@ jobs:
   #         prerelease: "true"
   #         artifacts: "out/make/**/*.AppImage,out/make/**/*.deb,out/make/**/*.rpm,out/make/**/*.zip"
 
-  release-windows:
-    runs-on: windows-latest
+  # release-windows:
+  #   runs-on: windows-latest
+
+  #   steps:
+  #     - name: Check out Git repository
+  #       uses: actions/checkout@v4
+
+  #     - name: Install Node.js & NPM
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: '20.11.0'
+
+  #     - name: Install repo dependencies
+  #       run: yarn
+
+  #     - name: Make packages
+  #       run: yarn make
+
+  #     - name: Release
+  #       uses: ncipollo/release-action@v1
+  #       with:
+  #         allowUpdates: "true"
+  #         artifactErrorsFailBuild: "true"
+  #         artifacts: "out/make/**/*.exe"
+
+  release-macos:
+    runs-on: macos-latest
 
     steps:
       - name: Check out Git repository
@@ -67,35 +92,4 @@ jobs:
           allowUpdates: "true"
           artifactErrorsFailBuild: "true"
           prerelease: "true"
-          artifacts: "./out/make/**/*.exe"
-
-  # release-macos:
-  #   runs-on: macos-latest
-
-  #   steps:
-  #     - id: version
-  #       name: version
-  #       run: |
-  #         long="${{ github.ref }}"; version="${long#"refs/tags/v"}"; echo "version=${version}" >> "$GITHUB_ENV"
-  #         echo "version=${version}"
-
-  #     - name: Check out Git repository
-  #       uses: actions/checkout@v4
-
-  #     - name: Install Node.js & NPM
-  #       uses: actions/setup-node@v3
-  #       with:
-  #         node-version: '20.11.0'
-
-  #     - name: Install repo dependencies
-  #       run: yarn
-
-  #     - name: Make packages
-  #       run: yarn make
-
-  #     - name: Release
-  #       uses: ncipollo/release-action@v1
-  #       with:
-  #         allowUpdates: true
-  #         artifactErrorsFailBuild: true
-  #         artifacts: "./out/make/**/*.dmg"
+          artifacts: "out/make/**/*.dmg"
