@@ -72,6 +72,10 @@ jobs:
     runs-on: macos-latest
 
     steps:
+      - name: Install required packages
+        run: |
+          python3 -m pip install packaging
+
       - name: Check out Git repository
         uses: actions/checkout@v4
 
