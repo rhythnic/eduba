@@ -28,11 +28,11 @@ const config: ForgeConfig = {
     //     icon: './icons/icon.png'
     //   }
     // }),
-    new MakerDeb({
-      options: {
-        icon: './icons/icon.png'
-      }
-    }),
+    // new MakerDeb({
+    //   options: {
+    //     icon: './icons/icon.png'
+    //   }
+    // }),
     new MakerAppImage({
         options: {
           icon: './icons/icon.png'

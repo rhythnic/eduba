@@ -47,7 +47,8 @@ jobs:
           artifactErrorsFailBuild: "true"
           generateReleaseNotes: "true"
           prerelease: "true"
-          artifacts: "./out/make/**/*.{AppImage,deb,rpm,zip}"
+          artifacts: "out/make/**/*.AppImage"
+          # artifacts: "./out/make/**/*.{AppImage,deb,rpm,zip}"
 
   # release-windows:
   #   runs-on: windows-latest
