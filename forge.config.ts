@@ -2,8 +2,9 @@ import type { ForgeConfig } from '@electron-forge/shared-types';
 import { MakerSquirrel } from '@electron-forge/maker-squirrel';
 import { MakerZIP } from '@electron-forge/maker-zip';
 import MakerAppImage from "@reforged/maker-appimage";
-// import { MakerDeb } from '@electron-forge/maker-deb';
-// import { MakerRpm } from '@electron-forge/maker-rpm';
+import { MakerDeb } from '@electron-forge/maker-deb';
+import { MakerRpm } from '@electron-forge/maker-rpm';
+import MakerDMG from "@electron-forge/maker-dmg";
 import { AutoUnpackNativesPlugin } from '@electron-forge/plugin-auto-unpack-natives';
 import { WebpackPlugin } from '@electron-forge/plugin-webpack';
 
@@ -13,21 +14,32 @@ import { rendererConfig } from './webpack.renderer.config';
 const config: ForgeConfig = {
   packagerConfig: {
     asar: true,
-    icon: './images/icon' // no file extension required
+    icon: './icons/icon' // no file extension required
   },
   rebuildConfig: {},
   makers: [
     new MakerSquirrel({
       // iconUrl: 'https://url/to/icon.ico',
-      setupIcon: './images/icon.ico'
+      setupIcon: './icons/icon.ico',
     }),
-    new MakerZIP({},['darwin']),
-    // new MakerRpm({}),
-    // new MakerDeb({}),
+    new MakerZIP({}, ['linux']),
+    new MakerRpm({
+      options: {
+        icon: './icons/icon.png'
+      }
+    }),
+    new MakerDeb({
+      options: {
+        icon: './icons/icon.png'
+      }
+    }),
     new MakerAppImage({
         options: {
-          icon: './images/icon.png'
+          icon: './icons/icon.png'
         }
+    }),
+    new MakerDMG({
+      icon: './icons/icon.icns'
     })
   ],
   plugins: [
