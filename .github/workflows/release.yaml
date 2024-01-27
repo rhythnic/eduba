@@ -16,12 +16,6 @@ jobs:
   #   runs-on: ubuntu-latest
 
   #   steps:
-  #     - id: version
-  #       name: version
-  #       run: |
-  #         long="${{ github.ref }}"; version="${long#"refs/tags/v"}"; echo "version=${version}" >> "$GITHUB_ENV"
-  #         echo "version=${version}"
-
   #     - name: Install required binaries
   #       run: |
   #         sudo apt update
@@ -53,12 +47,6 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - id: version
-        name: version
-        run: |
-          long="${{ github.ref }}"; version="${long#"refs/tags/v"}"; echo "version=${version}" >> "$GITHUB_ENV"
-          echo "version=${version}"
-
       - name: Check out Git repository
         uses: actions/checkout@v4
 
