@@ -38,6 +38,7 @@ jobs:
       - name: Release
         uses: ncipollo/release-action@v1
         with:
+          allowUpdates: "true"
           artifactErrorsFailBuild: "true"
           generateReleaseNotes: "true"
           prerelease: "true"
