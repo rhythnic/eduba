@@ -1,5 +1,5 @@
 import { ComponentController } from "@/renderer/controllers/component.ctrl";
-import { AppStore, NavStore } from "@/renderer/stores";
+import { AppStore, SidebarStore } from "@/renderer/stores";
 import { Signal } from "@preact/signals";
 import { inject, injectable } from "inversify";
 import { createRef } from "preact";
@@ -16,7 +16,7 @@ export class ArticleController extends ComponentController<ArticleViewerProps>{
 
     constructor(
         @inject(AppStore) private readonly appStore: AppStore,
-        @inject(NavStore) private readonly navStore: NavStore
+        @inject(SidebarStore) private readonly sidebarStore: SidebarStore
     ) {
       super();
     }
@@ -61,7 +61,7 @@ export class ArticleController extends ComponentController<ArticleViewerProps>{
         if (articleLinkRgx.test(href)) {
           // Open article in same tab
           href = href.startsWith("/") ? href.slice(1) : href;
-          this.navStore.insertPage({ href }, false);
+          this.sidebarStore.addPage({ href });
           return;
         }
       } catch (err) {

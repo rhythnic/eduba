@@ -225,7 +225,7 @@ export class NavStore {
     }
   }
 
-  updateActivePageTitle(title: string) {
+  updatePageTitle(title: string) {
     const { tabIndex, page, pageIndex } = this.ensureActiveTab();
     let tabs = this.state.tabs.peek();
     const tab = tabs[tabIndex];

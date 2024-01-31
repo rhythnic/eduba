@@ -8,14 +8,18 @@ import { last } from "@/renderer/utils";
 import { TYPES } from "@/renderer/di";
 import { BookmarkStore } from "@/renderer/stores";
 
-export const SidebarBookmarksContext = createContext(null);
+export const BookmarksContext = createContext(null);
+
+export interface BookmarksProps {
+  class?: string;
+}
 
 export interface BookmarksControllerState {
   openFolderPath: string[];
 }
 
 @injectable()
-export class SidebarBookmarksController extends ComponentController<never> {
+export class BookmarksController extends ComponentController<BookmarksProps> {
   public state = signalState<BookmarksControllerState>({
     openFolderPath: []
   });
@@ -32,7 +36,7 @@ export class SidebarBookmarksController extends ComponentController<never> {
 
     this.state._configure({
       storage: this.storage,
-      key: "SidebarBookmarksController"
+      key: "BookmarksController"
     });
 
     this.activeList = computed(() => {

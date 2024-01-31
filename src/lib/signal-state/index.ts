@@ -6,7 +6,7 @@ export interface SignalStateOptions {
 }
 
 export interface SignalStateApi {
-  _configure(opts: SignalStateOptions): void;
+  _configure(opts: SignalStateOptions): Promise<void>;
   _configured: boolean;
   _set(state: Record<string, unknown>): void;
   _reset(): void;

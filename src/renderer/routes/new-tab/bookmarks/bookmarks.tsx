@@ -4,26 +4,26 @@ import TabLink from "@/renderer/components/tab-link";
 import { useProvider } from "@/renderer/hooks/use-provider.hook";
 import { useController } from "@/renderer/hooks/use-controller.hook";
 import { AuthStore } from "@/renderer/stores";
-import { SidebarBookmarksContext, SidebarBookmarksController } from "./sidebar-bookmarks.ctrl";
+import { BookmarksContext, BookmarksController, BookmarksProps } from "./bookmarks.ctrl";
 import BookmarkRow from "./bookmark-row";
 import BookmarkBreadcrumbs from "./bookmark-breadcrumbs";
 
-export default function SidebarBookmarks() {
-  const ctrl = useController<never, SidebarBookmarksController>(
-    SidebarBookmarksController
+export default function Bookmarks(props: BookmarksProps) {
+  const ctrl = useController<BookmarksProps, BookmarksController>(
+    BookmarksController,
+    props
   );
 
   const authStore = useProvider<AuthStore>(AuthStore);
 
   return (
-    <SidebarBookmarksContext.Provider value={ctrl}>
-      <div>
+    <BookmarksContext.Provider value={ctrl}>
+      <div class={props.class}>
         <div class="flex justify-between items-center h-12">
           <BookmarkBreadcrumbs />
           {authStore.state.sessionActive.value && (
             <TabLink
               href="bookmarks"
-              newTab={true}
               pageTitle="Bookmarks Manager"
               class="ml-3 mr-1"
             >
@@ -37,6 +37,6 @@ export default function SidebarBookmarks() {
           ))}
         </ul>
       </div>
-    </SidebarBookmarksContext.Provider>
+    </BookmarksContext.Provider>
   );
 }

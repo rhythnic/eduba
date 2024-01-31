@@ -2,8 +2,8 @@ import { FormController } from "../../controllers/form.ctrl";
 import { inject, injectable } from "inversify";
 import { TYPES } from "@/renderer/di";
 import { signalState } from "@/lib/signal-state";
-import { NavStore } from "@/renderer/stores";
 import { ComponentController } from "@/renderer/controllers/component.ctrl";
+import { SidebarStore } from "@/renderer/stores/sidebar.store";
 
 export interface NewTabPageProps {
   pageId: string;
@@ -19,7 +19,7 @@ export class NewTabPageController extends ComponentController<NewTabPageProps> {
 
   constructor(
     @inject(TYPES.LocalStorage) private readonly storage: Storage,
-    @inject(NavStore) private readonly navStore: NavStore
+    @inject(SidebarStore) private readonly sidebarStore: SidebarStore
   ) {
     super();
 
@@ -34,6 +34,6 @@ export class NewTabPageController extends ComponentController<NewTabPageProps> {
   }
   
   insertPage = ({ href }: NewTabFormState) => {
-    this.navStore.insertPage({ href }, true);
+    this.sidebarStore.addPage({ href });
   };
 }

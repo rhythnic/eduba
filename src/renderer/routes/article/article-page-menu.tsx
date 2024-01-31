@@ -65,7 +65,6 @@ export default function ArticleMenu() {
           <li>
             <TabLink
               href={`${publisher._db}/articles/${publisher.article._id}`}
-              newTab={true}
               class="join-item mr-4"
             >
               <UserCircleIcon class="w-6 h-6 text-inherit" />
@@ -77,7 +76,6 @@ export default function ArticleMenu() {
           <li>
             <TabLink
               href={`${publisher._db}/articles`}
-              newTab={true}
               pageTitle="Articles"
               class="join-item mr-4"
             >
@@ -92,7 +90,6 @@ export default function ArticleMenu() {
             <TabLink
               pageTitle="Edit Article"
               href={`edit/articles/${article._db}/${article._id}`}
-              replace={true}
               class="join-item mr-4"
             >
               <PencilSquareIcon class="w-6 h-6 text-inherit" />

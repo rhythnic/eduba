@@ -1,6 +1,7 @@
 import { h } from "preact";
 import { NewTabPageController, NewTabPageProps } from "./new-tab-page.ctrl";
 import { useController } from "@/renderer/hooks/use-controller.hook";
+import Bookmarks from "./bookmarks/bookmarks";
 
 
 export default function NewTabPage(props: NewTabPageProps) {
@@ -11,13 +12,13 @@ export default function NewTabPage(props: NewTabPageProps) {
   );
 
   return (
-    <main class="page" key={props.pageId}>
+    <main class="page w-full max-w-2xl mx-auto" key={props.pageId}>
       <form
         id="new-tab-form"
-        class="flex justify-center mt-24"
+        class="flex justify-center mt-12"
         {...ctrl.form.elementProps}
       >
-        <div class="form-control w-full max-w-2xl">
+        <div class="form-control w-full">
           <label class="label">
             <span class="label-text">Paste share link</span>
           </label>
@@ -34,6 +35,8 @@ export default function NewTabPage(props: NewTabPageProps) {
           </div>
         </div>
       </form>
+
+      <Bookmarks class="mt-24" />
     </main>
   );
 }

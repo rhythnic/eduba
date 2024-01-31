@@ -1,34 +1,46 @@
 import { h, Fragment } from "preact";
-import TabLink from "@/renderer/components/tab-link";
-import { useController } from "@/renderer/hooks/use-controller.hook";
-import { SidebarPublishersController } from "./sidebar-publishers.ctrl";
+import Auth from "./auth/auth";
+import Backup from "./backup/backup";
+import { useController } from "../../../hooks/use-controller.hook";
+import { UserMenuContext, UserMenuController } from "./user-menu.ctrl";
+import { ArrowRightOnRectangleIcon, PlusIcon } from "@heroicons/react/24/solid";
+import { useProvider } from "@/renderer/hooks";
+import { AuthStore } from "@/renderer/stores";
+import NewPublisher from "./new-publisher/new-publisher";
 import {
   EllipsisVerticalIcon,
   PlusCircleIcon,
   SignalIcon,
   SignalSlashIcon,
 } from "@heroicons/react/24/solid";
-import { useProvider } from "@/renderer/hooks";
 import { PublisherStore } from "@/renderer/stores";
+import TabLink from "@/renderer/components/tab-link";
 
-export default function SidebarPublishers() {
-  const ctrl = useController<never, SidebarPublishersController>(
-    SidebarPublishersController
-  );
-
+export default function UserMenu() {
+  const ctrl = useController<never, UserMenuController>(UserMenuController);
+  
+  const authStore = useProvider<AuthStore>(AuthStore);
   const publisherStore = useProvider<PublisherStore>(PublisherStore);
 
+  const sessionActive = authStore.state.sessionActive.value;
+
   return (
-    <div>
-      {!!ctrl.state.userPublishers.value.length && (
+    <UserMenuContext.Provider value={ctrl}>
+      <div class="flex-1 flex flex-col justify-between">
         <div>
-          <h2 class="font-bold">My Publishers</h2>
+          {sessionActive && (
+          <div class="flex items-center">
+            <h2 class="font-bold mr-4">My Publishers</h2>
+            <button class="btn btn-circle btn-ghost" onClick={ctrl.openNewPublisher}>
+              <PlusIcon class="w-6 h-6 text-inherit" />
+            </button>
+          </div>
+          )}
           <ul class="menu w-full rounded-box">
             {ctrl.state.userPublishers.value.map((publisher) => (
               <li class="flex-row">
                 <TabLink
                   href={`${publisher._db}/articles/${publisher.article._id}`}
-                  newTab={true}
                   class="flex-1"
                 >
                   {publisher.article.title}
@@ -45,7 +57,6 @@ export default function SidebarPublishers() {
                       <TabLink
                         pageTitle="New Article"
                         href={`edit/articles/${publisher._db}`}
-                        newTab={true}
                         class="join-item mr-4"
                       >
                         <PlusCircleIcon class="w-6 h-6 text-inherit" />
@@ -77,21 +88,28 @@ export default function SidebarPublishers() {
             ))}
           </ul>
         </div>
-      )}
-      <h2 class="font-bold mt-2">Subscriptions</h2>
-      <ul class="menu w-full rounded-box">
-        {ctrl.state.subscribedPublishers.value.map((publisher) => (
-          <li>
-            <TabLink
-              href={`${publisher._db}/articles/${publisher.article._id}`}
-              newTab={true}
-              class="flex-1"
-            >
-              {publisher.article.title}
-            </TabLink>
-          </li>
-        ))}
-      </ul>
-    </div>
+        <ul className="menu w-full rounded-box">
+          {sessionActive && (
+            <li>
+              <a onClick={ctrl.openBackup}>Backup / Restore</a>
+            </li>
+          )}
+          {sessionActive && (
+            <li>
+              <a onClick={ctrl.signOut}>
+                <ArrowRightOnRectangleIcon class="w-6 h-6 text-inherit" /> sign
+                out
+              </a>
+            </li>
+          )}
+        </ul>
+
+        {sessionActive && <NewPublisher onClose={ctrl.closeNewPublisher} />}
+
+        {sessionActive && <Backup onClose={ctrl.closeBackup} />}
+
+        {!sessionActive && <Auth />}
+      </div>
+    </UserMenuContext.Provider>
   );
 }

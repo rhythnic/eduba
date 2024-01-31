@@ -1,6 +1,5 @@
 import { ComponentChildren, h } from "preact";
 import Sidebar from "./sidebar/sidebar";
-import Nav from "./nav/nav";
 import ErrorBoundary from "../components/error-boundary";
 import { useProvider } from "../hooks/use-provider.hook";
 import { AppStore } from "../stores";
@@ -22,7 +21,6 @@ export default function Layout({ children }: LayoutProps) {
       <div class="w-screen h-screen drawer lg:drawer-open ">
         <input id="sidebar-drawer" type="checkbox" class="drawer-toggle" />
         <div class="drawer-content flex flex-col overflow-hidden">
-          <Nav />
           {children}
         </div>
         <div class="drawer-side">

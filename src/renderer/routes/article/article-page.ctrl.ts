@@ -7,7 +7,7 @@ import { Emitter } from "@/lib/emitter";
 import { ArticleDto, PopulatedPublisherDto } from "@/dtos/response/interfaces";
 import { CreateBookmarkRequest } from "@/dtos/request/interfaces";
 import { signalState } from "@/lib/signal-state";
-import { AppStore, NavStore } from "@/renderer/stores";
+import { AppStore, SidebarStore } from "@/renderer/stores";
 import { IpcApi, IpcEvents } from "@/api/ipc/types";
 import { AlertEvent } from "@/events/renderer";
 import { ComponentController } from "@/renderer/controllers/component.ctrl";
@@ -51,7 +51,7 @@ export class ArticlePageController extends ComponentController<ArticlePageProps>
     @inject(TYPES.IpcSdk) private readonly ipcSdk: IpcApi,
     @inject(TYPES.IpcEvents) private readonly ipcEvents: IpcEvents,
     @inject(AppStore) private readonly appStore: AppStore,
-    @inject(NavStore) private readonly navStore: NavStore,
+    @inject(SidebarStore) private readonly sidebarStore: SidebarStore,
   ) {
     super();
 
@@ -84,7 +84,7 @@ export class ArticlePageController extends ComponentController<ArticlePageProps>
       this.state._set({ article, markdown, publisher });
 
       if (article) {
-        this.navStore.updateActivePageTitle(article.title);
+        this.sidebarStore.updatePageTitle(props.pageId, article.title);
       }
 
       this.listeners = [
@@ -116,7 +116,7 @@ export class ArticlePageController extends ComponentController<ArticlePageProps>
         const article = await this.ipcSdk.article.load(evt.db, evt.id);
         if (article) {
           this.state._set({ article });
-          this.navStore.updateActivePageTitle(article.title);
+          this.sidebarStore.updatePageTitle(this.props.pageId, article.title);
         }
       }
     } catch (err) {

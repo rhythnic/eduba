@@ -5,7 +5,7 @@ import { signalState } from "@/lib/signal-state";
 import { ComponentController } from "@/renderer/controllers/component.ctrl";
 import { FormController } from "@/renderer/controllers/form.ctrl";
 import { TYPES } from "@/renderer/di";
-import { AppStore, NavStore } from "@/renderer/stores";
+import { AppStore, SidebarStore } from "@/renderer/stores";
 
 export interface NewPublisherProps {
     onClose: () => void;
@@ -24,7 +24,7 @@ export class NewPublisherController extends ComponentController<NewPublisherProp
     constructor(
       @inject(AppStore) private readonly appStore: AppStore,
       @inject(TYPES.IpcSdk) private readonly ipcSdk: IpcApi,
-      @inject(NavStore) private readonly navStore: NavStore
+      @inject(SidebarStore) private readonly sidebarStore: SidebarStore
     ) {
       super();
   
@@ -46,7 +46,7 @@ export class NewPublisherController extends ComponentController<NewPublisherProp
                 title
             });
             const href = `/edit/articles/${publisher._db}/${publisher.article}`;
-            this.navStore.insertTab({ title, href });
+            this.sidebarStore.addPage({ title, href });
             this.cancel();
         } catch (err) {
             this.appStore.reportError(err);
