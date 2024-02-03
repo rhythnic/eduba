@@ -10,7 +10,7 @@ export default function Subscriptions() {
 
   return (
     <div>
-      <h2 class="font-bold mt-2">Subscriptions</h2>
+      <h2 class="font-bold ml-6">Subscriptions</h2>
       <ul class="menu w-full rounded-box">
         {ctrl.state.subscribedPublishers.value.map((publisher) => (
           <li>

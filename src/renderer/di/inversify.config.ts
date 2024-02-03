@@ -2,7 +2,7 @@ import { Container } from "inversify";
 import { TYPES } from "./types";
 import { Emitter } from "@/lib/emitter";
 import { IpcApi, IpcEvents } from "@/api/ipc/types";
-import { AppStore, AuthStore, BookmarkStore, NavStore, PublisherStore, SidebarStore } from "../stores";
+import { AppStore, AuthStore, BookmarkStore, PublisherStore, SidebarStore } from "../stores";
 import { route } from "preact-router";
 import { IRoute } from "../types";
 
@@ -24,6 +24,5 @@ diContainer.bind<IRoute>(TYPES.Route).toConstantValue(route);
 diContainer.bind<AppStore>(AppStore).to(AppStore).inSingletonScope();
 diContainer.bind<AuthStore>(AuthStore).to(AuthStore).inSingletonScope();
 diContainer.bind<BookmarkStore>(BookmarkStore).to(BookmarkStore).inSingletonScope();
-diContainer.bind<NavStore>(NavStore).to(NavStore).inSingletonScope();
 diContainer.bind<PublisherStore>(PublisherStore).to(PublisherStore).inSingletonScope();
 diContainer.bind<SidebarStore>(SidebarStore).to(SidebarStore).inSingletonScope();

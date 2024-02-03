@@ -3,7 +3,7 @@ import Auth from "./auth/auth";
 import Backup from "./backup/backup";
 import { useController } from "../../../hooks/use-controller.hook";
 import { UserMenuContext, UserMenuController } from "./user-menu.ctrl";
-import { ArrowRightOnRectangleIcon, PlusIcon } from "@heroicons/react/24/solid";
+import { ArrowRightStartOnRectangleIcon, PlusIcon } from "@heroicons/react/24/solid";
 import { useProvider } from "@/renderer/hooks";
 import { AuthStore } from "@/renderer/stores";
 import NewPublisher from "./new-publisher/new-publisher";
@@ -30,7 +30,7 @@ export default function UserMenu() {
         <div>
           {sessionActive && (
           <div class="flex items-center">
-            <h2 class="font-bold mr-4">My Publishers</h2>
+            <h2 class="font-bold mr-4 ml-6">My Publishers</h2>
             <button class="btn btn-circle btn-ghost" onClick={ctrl.openNewPublisher}>
               <PlusIcon class="w-6 h-6 text-inherit" />
             </button>
@@ -97,7 +97,7 @@ export default function UserMenu() {
           {sessionActive && (
             <li>
               <a onClick={ctrl.signOut}>
-                <ArrowRightOnRectangleIcon class="w-6 h-6 text-inherit" /> sign
+                <ArrowRightStartOnRectangleIcon class="w-6 h-6 text-inherit" /> sign
                 out
               </a>
             </li>

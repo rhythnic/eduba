@@ -7,6 +7,7 @@ import { AuthStore } from "@/renderer/stores";
 import { BookmarksContext, BookmarksController, BookmarksProps } from "./bookmarks.ctrl";
 import BookmarkRow from "./bookmark-row";
 import BookmarkBreadcrumbs from "./bookmark-breadcrumbs";
+import { Link } from "preact-router";
 
 export default function Bookmarks(props: BookmarksProps) {
   const ctrl = useController<BookmarksProps, BookmarksController>(
@@ -22,13 +23,12 @@ export default function Bookmarks(props: BookmarksProps) {
         <div class="flex justify-between items-center h-12">
           <BookmarkBreadcrumbs />
           {authStore.state.sessionActive.value && (
-            <TabLink
-              href="bookmarks"
-              pageTitle="Bookmarks Manager"
+            <Link
+              href="/bookmarks"
               class="ml-3 mr-1"
             >
               <PencilSquareIcon class="w-6 h-6 text-inherit" />
-            </TabLink>
+            </Link>
           )}
         </div>
         <ul class="w-full">

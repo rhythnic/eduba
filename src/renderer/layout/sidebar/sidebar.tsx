@@ -5,7 +5,8 @@ import Subscriptions from "./subscriptions/subscriptions";
 import { UserIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import Pages from "./pages/pages";
 import { SidebarStore, SidebarTab } from "@/renderer/stores/sidebar.store";
-import { useProvider } from "@/renderer/hooks";
+import { useController, useProvider } from "@/renderer/hooks";
+import { SidebarController } from "./sidebar.ctrl";
 
 const navTabs = [
   { tab: SidebarTab.Subscriptions, title: "Subscriptions" },
@@ -14,19 +15,20 @@ const navTabs = [
 ];
 
 export default function Sidebar() {
+  const ctrl = useController<never, SidebarController>(SidebarController);
   const sidebarStore = useProvider<SidebarStore>(SidebarStore);
 
   const selectedTab = sidebarStore.state.tab.value;
 
   return (
-    <section class="p-4 w-96 flex flex-col h-full bg-base-300 text-base-content">
+    <section class="w-96 flex flex-col h-full">
       <label
         htmlFor="sidebar-drawer"
         class="btn btn-ghost btn-circle lg:hidden self-end"
       >
         <XMarkIcon class="h-6 w-6 text-current" />
       </label>
-      <div class="tabs tabs-bordered mb-8" onClick={sidebarStore.selectTab}>
+      <div class="tabs tabs-bordered mb-2 p-2">
         {navTabs.map((navTab) => (
           <a
             key={navTab.tab}
@@ -35,6 +37,7 @@ export default function Sidebar() {
               "tab": true,
               "tab-active": selectedTab === navTab.tab,
             })}
+            onClick={ctrl.selectTab}
           >
             {navTab.title}
           </a>

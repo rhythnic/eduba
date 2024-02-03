@@ -23,7 +23,7 @@ export default function Layout({ children }: LayoutProps) {
         <div class="drawer-content flex flex-col overflow-hidden">
           {children}
         </div>
-        <div class="drawer-side">
+        <div class="drawer-side bg-base-300 text-base-content">
           <label htmlFor="sidebar-drawer" class="drawer-overlay"></label>
           <Sidebar />
         </div>

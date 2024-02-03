@@ -1,41 +1,73 @@
 import { h } from "preact";
-import { PlusIcon, XMarkIcon } from "@heroicons/react/24/solid";
+import { EllipsisVerticalIcon, PlusIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import { Link } from "preact-router/match";
 import { useController, useProvider } from "@/renderer/hooks";
 import { SidebarStore } from "@/renderer/stores";
 import { styles } from "@/renderer/utils";
-import { PagesController } from "./pages.ctrl";
+import { PagesContext, PagesController } from "./pages.ctrl";
+import PageMenu from "./page-menu";
+import BookmarkEdit from "@/renderer/components/bookmark-edit/bookmark-edit";
 
 export default function Pages() {
     const ctrl = useController<never, PagesController>(PagesController);
     const sidebarStore = useProvider<SidebarStore>(SidebarStore);
+    const url = sidebarStore.state.url.value;
 
     return (
+      <PagesContext.Provider value={ctrl}>
         <div>
           <div class="flex items-center">
-            <h2 class="font-bold mr-4">Pages</h2>
+            <h2 class="font-bold mr-4 ml-6">Pages</h2>
             <Link href="/newtab" class="btn btn-circle btn-ghost" >
                 <PlusIcon class="w-6 h-6 text-inherit" />
             </Link>
           </div>
-          <ul>
-            {sidebarStore.state.pages.value.map((page) => (
-              <li class="flex items-center justify-between group p-2 hover:bg-blue-300">
-                <Link href={`/${page.id}/${page.href}`}>
-                  {page.title || "Loading"}
-                </Link>
-                <button
-                  class={styles({
-                    "invisible group-hover:visible": true
-                  })}
-                  onClick={ctrl.closePage}
-                  data-page={page.id}
-                >
-                  <XMarkIcon class="w-6 h-6 text-inherit" />
-                </button>
-              </li>
-            ))}
+          <ul class="menu w-full rounded-box">
+            {sidebarStore.state.pages.value.map((page) => {
+              const isActive = SidebarStore.isActivePage(url, page.id);
+
+              const title = page.article?.title || page.title || "Loading"; 
+
+              return (
+                <li class="flex-row group min-w-0 max-w-full">
+                  <Link
+                    href={`/${page.id}/${page.href}`}
+                    class={styles({
+                      "flex-1 truncate block": true,
+                      "active": isActive
+                    })}
+                  >
+                    {title}
+                  </Link>
+                  {isActive &&
+                    <div class="dropdown dropdown-bottom dropdown-end mx-1 px-2">
+                    <label tabIndex={0} class="cursor-pointer">
+                      <EllipsisVerticalIcon class="w-5 h-5 text-inherit" />
+                    </label>
+                    <PageMenu page={page} />
+                  </div>
+                  }
+                  <button
+                    class={styles({
+                      "group-hover:visible px-2": true,
+                      "visible": isActive,
+                      "invisible": !isActive,
+                    })}
+                    onClick={ctrl.closePage}
+                    data-page={page.id}
+                  >
+                    <XMarkIcon class="w-6 h-6 text-inherit" />
+                  </button>
+                </li>
+              )
+          })}
           </ul>
+          <BookmarkEdit
+            bookmarkSignal={ctrl.state.bookmarkInEdit}
+            disableHrefEdit={true}
+            onDone={ctrl.handleBookmarkEditDone}
+          />
         </div>
+        </PagesContext.Provider>
     );
 }

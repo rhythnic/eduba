@@ -5,6 +5,7 @@ import { TYPES } from "@/renderer/di/types";
 import { AppStore } from "./app.store";
 import { IRoute } from "../types";
 import { RouterOnChangeArgs } from "preact-router";
+import { ArticleDto, PopulatedPublisherDto } from "@/dtos/response/interfaces";
 
 export enum SidebarTab {
     Subscriptions = "Subscriptions",
@@ -16,6 +17,9 @@ export interface Page {
     id: string;
     href: string;
     title: string;
+    article?: ArticleDto;
+    publisher?: PopulatedPublisherDto;
+    isPublisherArticle?: boolean;
 }
   
 export interface SidebarStoreState {
@@ -26,6 +30,10 @@ export interface SidebarStoreState {
 
 @injectable()
 export class SidebarStore {
+    static isActivePage(url: string, pageId: string): boolean {
+        return url.startsWith(`/${pageId}`);
+    }
+
     private readonly log: LogFunctions = log.scope("SidebarStore");
 
     public state = signalState<SidebarStoreState>({
@@ -61,11 +69,11 @@ export class SidebarStore {
         let pages = this.state.pages.peek()
         const pageIndex = pages.findIndex(p => p.id === pageId);
 
-        if (pageIndex < 1) {
+        if (pageIndex < 0) {
             return;
         }
 
-        const isActive = this.isActivePage(this.state.url.peek(), pages[pageIndex].id);
+        const isActive = SidebarStore.isActivePage(this.state.url.peek(), pages[pageIndex].id);
 
         pages = [
             ...pages.slice(0, pageIndex),
@@ -97,7 +105,7 @@ export class SidebarStore {
             return;
         }
 
-        const isActive = this.isActivePage(this.state.url.peek(), pages[pageIndex].id);
+        const isActive = SidebarStore.isActivePage(this.state.url.peek(), pages[pageIndex].id);
         const page = this.buildPage(data);
 
         pages = [
@@ -113,35 +121,34 @@ export class SidebarStore {
         }
     }
 
-    selectTab = ({ target }: Event) => {
-        if (target instanceof HTMLElement) {
-          if (target.tagName !== "A") return;
-          this.state._set({ tab: target.dataset.tab });
-        }
+    selectTab = (tab: SidebarTab) => {
+        this.state._set({ tab });
     };
 
-    updatePageTitle = (pageId: string, title: string): void => {
+    updatePage = (pageId: string, updates: Partial<Page>): void => {
         let pages = this.state.pages.peek();
         const pageIndex = pages.findIndex(p => p.id === pageId);
 
-        if (pageIndex > -1) {
-            const page = pages[pageIndex];
-            pages = [
-                ...pages.slice(0, pageIndex),
-                { ...page, title },
-                ...pages.slice(pageIndex + 1)
-            ]
-
-            this.state._set({ pages });
+        if (pageIndex < 0) {
+            this.log.warn("Update page failed:  page not found");
+            return;
         }
+
+        const page = Object.assign({}, pages[pageIndex], updates);
+
+        page.isPublisherArticle = page.article?._id === page.publisher?.article._id
+
+        pages = [
+            ...pages.slice(0, pageIndex),
+            page,
+            ...pages.slice(pageIndex + 1)
+        ]
+
+        this.state._set({ pages });
     }
 
     private routeToPage(page: Page): void {
         this.route(`/${page.id}/${page.href}`);
-    }
-
-    private isActivePage(url: string, pageId: string): boolean {
-        return url.startsWith(`/${pageId}`);
     }
 
     private buildPage(page: Partial<Page>): Page {

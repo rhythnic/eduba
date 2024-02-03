@@ -18,10 +18,10 @@ export default function AppRouter() {
   return (
     <Router history={history} onChange={sidebarStore.handleRoute}>
       <Route path="/newtab" component={NewTabPage} default/>
+      <Route path="/bookmarks" component={BookmarksPage} />
       <Route path="/:pageId/:dbId/articles/:articleId" component={ArticlePage} />
       <Route path="/:pageId/edit/articles/:dbId?/:articleId?" component={ArticleEditPage} />
       <Route path="/:pageId/:dbId/articles" component={PublisherArticlesPage} />
-      <Route path="/:pageId/bookmarks" component={BookmarksPage} />
       <Route default component={NotFoundPage} />
     </Router>
   );

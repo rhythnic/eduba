@@ -7,6 +7,7 @@ import { createRef } from "preact";
 const articleLinkRgx = /^\/?([0-9a-z]{52})\/articles\/([0-9a-z]+)$/i;
 
 export interface ArticleViewerProps {
+  class?: string;
   markdown: Signal
 }
 

@@ -10,7 +10,7 @@ export default function ArticleViewer(props: ArticleViewerProps) {
   );
 
   return (
-    <article ref={ctrl.articleRef}>
+    <article ref={ctrl.articleRef} class={props.class}>
       {/* Must pass props this way to avoid type error */}
       <Markdown {...{markdown: props.markdown.value || ""}} />
     </article>

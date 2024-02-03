@@ -1,15 +1,12 @@
 import { createContext } from "preact";
 import { Signal, computed } from "@preact/signals";
-import { AlertType, BookmarkType } from "@/enums";
 import { inject, injectable } from "inversify";
 import { TYPES } from "@/renderer/di";
 import { Emitter } from "@/lib/emitter";
 import { ArticleDto, PopulatedPublisherDto } from "@/dtos/response/interfaces";
-import { CreateBookmarkRequest } from "@/dtos/request/interfaces";
 import { signalState } from "@/lib/signal-state";
 import { AppStore, SidebarStore } from "@/renderer/stores";
 import { IpcApi, IpcEvents } from "@/api/ipc/types";
-import { AlertEvent } from "@/events/renderer";
 import { ComponentController } from "@/renderer/controllers/component.ctrl";
 import { ArticleChangeEvent, ArticleTextChangeEvent, PublisherChangeEvent } from "@/events/common/main";
 
@@ -25,7 +22,6 @@ export interface ArticlePageControllerState {
   publisher: PopulatedPublisherDto;
   article: ArticleDto;
   markdown: string;
-  bookmarkInEdit: Partial<CreateBookmarkRequest>
 }
 
 @injectable()
@@ -34,14 +30,11 @@ export class ArticlePageController extends ComponentController<ArticlePageProps>
     {
       publisher: null,
       article: null,
-      markdown: "",
-      bookmarkInEdit: null
+      markdown: ""
     }
   );
 
   public displayMarkdown: Signal<string>;
-
-  public isPublisherArticle: Signal<boolean>;
 
   public loading: Signal<boolean>;
 
@@ -61,12 +54,6 @@ export class ArticlePageController extends ComponentController<ArticlePageProps>
       return title ? `# ${title}\n\n${markdown}` : markdown;
     });
 
-    this.isPublisherArticle = computed(() => {
-      const publisher = this.state.publisher.value;
-      const article = this.state.article.value;
-      return publisher && article && publisher.article._id === article._id;
-    });
-
     this.loading = computed(() => !this.state.markdown.value);
   }
 
@@ -84,7 +71,7 @@ export class ArticlePageController extends ComponentController<ArticlePageProps>
       this.state._set({ article, markdown, publisher });
 
       if (article) {
-        this.sidebarStore.updatePageTitle(props.pageId, article.title);
+        this.sidebarStore.updatePage(props.pageId, { article, publisher });
       }
 
       this.listeners = [
@@ -103,6 +90,7 @@ export class ArticlePageController extends ComponentController<ArticlePageProps>
         const publisher = await this.ipcSdk.publisher.load(evt.db);
         if (publisher) {
           this.state._set({ publisher });
+          this.sidebarStore.updatePage(this.props.pageId, { publisher });
         }
       }
     } catch (err) {
@@ -116,16 +104,12 @@ export class ArticlePageController extends ComponentController<ArticlePageProps>
         const article = await this.ipcSdk.article.load(evt.db, evt.id);
         if (article) {
           this.state._set({ article });
-          this.sidebarStore.updatePageTitle(this.props.pageId, article.title);
+          this.sidebarStore.updatePage(this.props.pageId, { article });
         }
       }
     } catch (err) {
       this.appStore.reportError(err);
     }
-  };
-
-  handleBookmarkEditDone = () => {
-    this.state._set({ bookmarkInEdit: null });
   };
 
   handleTextChanged = async (evt: ArticleTextChangeEvent) => {
@@ -136,60 +120,6 @@ export class ArticlePageController extends ComponentController<ArticlePageProps>
           this.state._set({ markdown });
         }
       }
-    } catch (err) {
-      this.appStore.reportError(err);
-    }
-  };
-
-  openEditBookmark = () => {
-    const article = this.state.article.peek();
-
-    this.state._set({
-      bookmarkInEdit: {
-        type: BookmarkType.Bookmark,
-        href: `${article._db}/articles/${article._id}`,
-        title: article.title,
-      },
-    });
-  };
-
-  shareArticle = () => {
-    const article = this.state.article.peek();
-
-    this.ipcEvents.dispatch.CopiedToClipboardEvent(
-      `${article._db}/articles/${article._id}`
-    );
-
-    this.events.dispatch(new AlertEvent({
-      type: AlertType.Success,
-      message: "Copied to clipboard",
-      timeout: 3000,
-    }));
-  };
-
-  subscribeToPublisher = async () => {
-    try {
-      await this.ipcSdk.publisher.subscribe({ _id: this.props.dbId });
-
-      this.events.dispatch(new AlertEvent({
-        type: AlertType.Success,
-        message: "Subscribed",
-        timeout: 3000,
-      }));
-    } catch (err) {
-      this.appStore.reportError(err);
-    }
-  };
-
-  unsubscribeFromPublisher = async () => {
-    try {
-      await this.ipcSdk.publisher.unsubscribe(this.props.dbId);
-
-      this.events.dispatch(new AlertEvent({
-        type: AlertType.Success,
-        message: "Unsubscribed",
-        timeout: 3000,
-      }));
     } catch (err) {
       this.appStore.reportError(err);
     }
