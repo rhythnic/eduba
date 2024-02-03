@@ -13,7 +13,11 @@ export default function Auth() {
   return (
     <>
       <Modal openSignal={ctrl.state.modal}>
-        <form {...ctrl.form.elementProps} class="modal-box w-11/12 max-w-3xl">
+        <form
+          {...ctrl.form.elementProps}
+          id="sign-in-form"
+          class="modal-box w-11/12 max-w-3xl"
+        >
           <fieldset>
             <legend>Method of Sign In</legend>
             <div class="flex flex-wrap">
@@ -61,6 +65,7 @@ export default function Auth() {
                     class="btn btn-primary btn-circle"
                     title="Generate recovery phrase"
                     onClick={ctrl.generateMneumonic}
+                    data-testid="generate-mneumonic"
                   >
                     <ArrowPathIcon class="w-6 h-6 text-inherit" />
                   </button>
@@ -134,7 +139,11 @@ export default function Auth() {
         </form>
       </Modal>
 
-      <button onClick={ctrl.openModal} class="btn btn-primary block m-8">
+      <button
+        class="btn btn-primary block m-8"
+        onClick={ctrl.openModal}
+        data-testid="sign-in"
+      >
         Sign In
       </button>
     </>

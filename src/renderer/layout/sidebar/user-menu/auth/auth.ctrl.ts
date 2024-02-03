@@ -63,8 +63,11 @@ export class AuthController extends ComponentController<never>{
   }
 
   async refreshAddress(data: AuthFormState) {
-    if (data.walletType === HdWalletType.Mneumonic && !data.phrase) {
-      return;
+    if (data.walletType === HdWalletType.Mneumonic) {
+      if (!data.phrase) return;
+
+      const split = data.phrase.split(" ");
+      if (!(split.length >= 12)) return;
     }
 
     try {
@@ -87,8 +90,7 @@ export class AuthController extends ComponentController<never>{
       // Ignore get-address errors for ledger, since user most likely doesn't
       // have device app open.
       if (this.form.state.walletType.peek() === HdWalletType.Mneumonic) {
-        this.state._set({ error: "Unknown error occurred." });
-        this.appStore.reportError(err);
+        this.state._set({ error: err.message });
       }
     }
   }
