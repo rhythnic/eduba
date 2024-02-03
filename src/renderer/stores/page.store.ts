@@ -6,12 +6,8 @@ import { AppStore } from "./app.store";
 import { IRoute } from "../types";
 import { RouterOnChangeArgs } from "preact-router";
 import { ArticleDto, PopulatedPublisherDto } from "@/dtos/response/interfaces";
-
-export enum SidebarTab {
-    Subscriptions = "Subscriptions",
-    UserMenu = "UserMenu",
-    Pages = "Pages"
-}
+import { Emitter } from "@/lib/emitter";
+import { PageAddedEvent } from "@/events/renderer";
 
 export interface Page {
     id: string;
@@ -22,32 +18,31 @@ export interface Page {
     isPublisherArticle?: boolean;
 }
   
-export interface SidebarStoreState {
+export interface PageStoreState {
     pages: Page[];
     url: string;
-    tab: SidebarTab
 }
 
 @injectable()
-export class SidebarStore {
+export class PageStore {
     static isActivePage(url: string, pageId: string): boolean {
         return url.startsWith(`/${pageId}`);
     }
 
-    private readonly log: LogFunctions = log.scope("SidebarStore");
+    private readonly log: LogFunctions = log.scope("PageStore");
 
-    public state = signalState<SidebarStoreState>({
+    public state = signalState<PageStoreState>({
         pages: [],
-        url: "/",
-        tab: SidebarTab.Pages
+        url: "/"
     });
 
     constructor(
         @inject(TYPES.LocalStorage) private readonly storage: Storage,
         @inject(AppStore) private readonly appStore: AppStore,
-        @inject(TYPES.Route) private readonly route: IRoute
+        @inject(TYPES.Route) private readonly route: IRoute,
+        @inject(TYPES.Events) private readonly events: Emitter
     ) {
-        this.state._configure({ storage: this.storage, key: "SidebarStore" })
+        this.state._configure({ storage: this.storage, key: "PageStore" })
             .then(() => {
                 route(this.state.url.peek());
             })
@@ -57,12 +52,11 @@ export class SidebarStore {
         const pages = this.state.pages.peek();
         const page = this.buildPage(data);
 
-        this.state._set({
-            tab: SidebarTab.Pages,
-            pages: [...pages, page]
-        });
+        this.state._set({ pages: [...pages, page] });
         
         this.routeToPage(page);
+
+        this.events.dispatch(new PageAddedEvent());
     }
 
     closePage = (pageId: string): void => {
@@ -73,7 +67,7 @@ export class SidebarStore {
             return;
         }
 
-        const isActive = SidebarStore.isActivePage(this.state.url.peek(), pages[pageIndex].id);
+        const isActive = PageStore.isActivePage(this.state.url.peek(), pages[pageIndex].id);
 
         pages = [
             ...pages.slice(0, pageIndex),
@@ -105,7 +99,7 @@ export class SidebarStore {
             return;
         }
 
-        const isActive = SidebarStore.isActivePage(this.state.url.peek(), pages[pageIndex].id);
+        const isActive = PageStore.isActivePage(this.state.url.peek(), pages[pageIndex].id);
         const page = this.buildPage(data);
 
         pages = [
@@ -120,10 +114,6 @@ export class SidebarStore {
             this.routeToPage(page);
         }
     }
-
-    selectTab = (tab: SidebarTab) => {
-        this.state._set({ tab });
-    };
 
     updatePage = (pageId: string, updates: Partial<Page>): void => {
         let pages = this.state.pages.peek();

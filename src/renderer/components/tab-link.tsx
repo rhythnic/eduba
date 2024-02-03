@@ -1,6 +1,6 @@
 import { ComponentChildren, h } from "preact";
 import { useProvider } from "../hooks/use-provider.hook";
-import { SidebarStore } from "../stores";
+import { PageStore } from "../stores";
 
 export interface TabLinkProps {
   pageTitle?: string;
@@ -15,11 +15,11 @@ export default function TabLink({
   class: className,
   children,
 }: TabLinkProps) {
-  const sidebarStore = useProvider<SidebarStore>(SidebarStore);
+  const pageStore = useProvider<PageStore>(PageStore);
 
   function handleClick(evt: Event) {
     evt.preventDefault();
-    sidebarStore.addPage({ title: pageTitle, href });
+    pageStore.addPage({ title: pageTitle, href });
   }
 
   return (

@@ -8,15 +8,15 @@ import ArticlePage from "./routes/article/article-page";
 import ArticleEditPage from "./routes/article-edit/article-edit-page";
 import BookmarksPage from "./routes/bookmarks/bookmarks-page";
 import { useProvider } from "./hooks";
-import { SidebarStore } from "./stores";
+import { PageStore } from "./stores";
 
 const history = createHashHistory() as unknown as CustomHistory;
 
 export default function AppRouter() {
-  const sidebarStore = useProvider<SidebarStore>(SidebarStore)
+  const pageStore = useProvider<PageStore>(PageStore)
 
   return (
-    <Router history={history} onChange={sidebarStore.handleRoute}>
+    <Router history={history} onChange={pageStore.handleRoute}>
       <Route path="/newtab" component={NewTabPage} default/>
       <Route path="/bookmarks" component={BookmarksPage} />
       <Route path="/:pageId/:dbId/articles/:articleId" component={ArticlePage} />

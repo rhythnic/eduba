@@ -10,7 +10,7 @@ import {
 import TabLink from "@/renderer/components/tab-link";
 import { useProvider } from "@/renderer/hooks";
 import { AuthStore } from "@/renderer/stores";
-import { Page } from "@/renderer/stores/sidebar.store";
+import { Page } from "@/renderer/stores/page.store";
 import { PagesContext } from "./pages.ctrl";
 
 export interface PageMenuProps {

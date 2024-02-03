@@ -4,9 +4,8 @@ import UserMenu from "./user-menu/user-menu";
 import Subscriptions from "./subscriptions/subscriptions";
 import { UserIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import Pages from "./pages/pages";
-import { SidebarStore, SidebarTab } from "@/renderer/stores/sidebar.store";
-import { useController, useProvider } from "@/renderer/hooks";
-import { SidebarController } from "./sidebar.ctrl";
+import { useController } from "@/renderer/hooks";
+import { SidebarController, SidebarTab } from "./sidebar.ctrl";
 
 const navTabs = [
   { tab: SidebarTab.Subscriptions, title: "Subscriptions" },
@@ -16,9 +15,8 @@ const navTabs = [
 
 export default function Sidebar() {
   const ctrl = useController<never, SidebarController>(SidebarController);
-  const sidebarStore = useProvider<SidebarStore>(SidebarStore);
 
-  const selectedTab = sidebarStore.state.tab.value;
+  const selectedTab = ctrl.state.tab.value;
 
   return (
     <section class="w-96 flex flex-col h-full">

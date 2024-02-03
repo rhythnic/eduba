@@ -5,7 +5,7 @@ import { ArticleDto } from "@/dtos/response/interfaces";
 import { signalState } from "@/lib/signal-state";
 import { inject, injectable } from "inversify";
 import { TYPES } from "@/renderer/di";
-import { AppStore, SidebarStore } from "@/renderer/stores";
+import { AppStore, PageStore } from "@/renderer/stores";
 import { IpcApi } from "@/api/ipc/types";
 import { ComponentController } from "@/renderer/controllers/component.ctrl";
 import { ArticleContentExtension } from "@/enums";
@@ -59,7 +59,7 @@ export class ArticleEditPageController extends ComponentController<ArticleEditPa
     @inject(TYPES.LocalStorage) private readonly storage: Storage,
     @inject(TYPES.IpcSdk) private readonly ipcSdk: IpcApi,
     @inject(AppStore) private readonly appStore: AppStore,
-    @inject(SidebarStore) private readonly sidebarStore: SidebarStore
+    @inject(PageStore) private readonly pageStore: PageStore
   ) {
     super();
 
@@ -113,9 +113,9 @@ export class ArticleEditPageController extends ComponentController<ArticleEditPa
       const page = {
         href: `${article._db}/articles/${article._id}`,
       };
-      this.sidebarStore.replacePage(this.props.pageId, page);
+      this.pageStore.replacePage(this.props.pageId, page);
     } else {
-      this.sidebarStore.closePage(this.props.pageId);
+      this.pageStore.closePage(this.props.pageId);
     }
   };
 
@@ -152,7 +152,7 @@ export class ArticleEditPageController extends ComponentController<ArticleEditPa
       }
 
       const page = { href: `${dbId}/articles/${articleId}` };
-      this.sidebarStore.replacePage(this.props.pageId, page);
+      this.pageStore.replacePage(this.props.pageId, page);
     } catch (err) {
       this.appStore.reportError(err);
     }

@@ -5,7 +5,7 @@ import { TYPES } from "@/renderer/di";
 import { Emitter } from "@/lib/emitter";
 import { ArticleDto, PopulatedPublisherDto } from "@/dtos/response/interfaces";
 import { signalState } from "@/lib/signal-state";
-import { AppStore, SidebarStore } from "@/renderer/stores";
+import { AppStore, PageStore } from "@/renderer/stores";
 import { IpcApi, IpcEvents } from "@/api/ipc/types";
 import { ComponentController } from "@/renderer/controllers/component.ctrl";
 import { ArticleChangeEvent, ArticleTextChangeEvent, PublisherChangeEvent } from "@/events/common/main";
@@ -44,7 +44,7 @@ export class ArticlePageController extends ComponentController<ArticlePageProps>
     @inject(TYPES.IpcSdk) private readonly ipcSdk: IpcApi,
     @inject(TYPES.IpcEvents) private readonly ipcEvents: IpcEvents,
     @inject(AppStore) private readonly appStore: AppStore,
-    @inject(SidebarStore) private readonly sidebarStore: SidebarStore,
+    @inject(PageStore) private readonly pageStore: PageStore,
   ) {
     super();
 
@@ -71,7 +71,7 @@ export class ArticlePageController extends ComponentController<ArticlePageProps>
       this.state._set({ article, markdown, publisher });
 
       if (article) {
-        this.sidebarStore.updatePage(props.pageId, { article, publisher });
+        this.pageStore.updatePage(props.pageId, { article, publisher });
       }
 
       this.listeners = [
@@ -90,7 +90,7 @@ export class ArticlePageController extends ComponentController<ArticlePageProps>
         const publisher = await this.ipcSdk.publisher.load(evt.db);
         if (publisher) {
           this.state._set({ publisher });
-          this.sidebarStore.updatePage(this.props.pageId, { publisher });
+          this.pageStore.updatePage(this.props.pageId, { publisher });
         }
       }
     } catch (err) {
@@ -104,7 +104,7 @@ export class ArticlePageController extends ComponentController<ArticlePageProps>
         const article = await this.ipcSdk.article.load(evt.db, evt.id);
         if (article) {
           this.state._set({ article });
-          this.sidebarStore.updatePage(this.props.pageId, { article });
+          this.pageStore.updatePage(this.props.pageId, { article });
         }
       }
     } catch (err) {

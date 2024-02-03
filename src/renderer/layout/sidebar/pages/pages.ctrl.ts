@@ -6,8 +6,8 @@ import { Emitter } from "@/lib/emitter";
 import { signalState } from "@/lib/signal-state";
 import { ComponentController } from "@/renderer/controllers/component.ctrl";
 import { TYPES } from "@/renderer/di";
-import { AppStore, SidebarStore } from "@/renderer/stores";
-import { Page } from "@/renderer/stores/sidebar.store";
+import { AppStore, PageStore } from "@/renderer/stores";
+import { Page } from "@/renderer/stores/page.store";
 import log, { LogFunctions } from "electron-log";
 import { inject, injectable } from "inversify";
 import { createContext } from "preact";
@@ -27,7 +27,7 @@ export class PagesController extends ComponentController<never> {
     });
 
     constructor(
-        @inject(SidebarStore) private readonly sidebarStore: SidebarStore,
+        @inject(PageStore) private readonly pageStore: PageStore,
         @inject(TYPES.IpcEvents) private readonly ipcEvents: IpcEvents,
         @inject(TYPES.Events) private readonly events: Emitter,
         @inject(TYPES.IpcSdk) private readonly ipcSdk: IpcApi,
@@ -44,7 +44,7 @@ export class PagesController extends ComponentController<never> {
         const pageId = evt.currentTarget.dataset.page;
 
         if (pageId) {
-            this.sidebarStore.closePage(pageId);
+            this.pageStore.closePage(pageId);
         }
     }
 

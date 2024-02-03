@@ -2,7 +2,7 @@ import { h } from "preact";
 import { EllipsisVerticalIcon, PlusIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import { Link } from "preact-router/match";
 import { useController, useProvider } from "@/renderer/hooks";
-import { SidebarStore } from "@/renderer/stores";
+import { PageStore } from "@/renderer/stores";
 import { styles } from "@/renderer/utils";
 import { PagesContext, PagesController } from "./pages.ctrl";
 import PageMenu from "./page-menu";
@@ -10,8 +10,8 @@ import BookmarkEdit from "@/renderer/components/bookmark-edit/bookmark-edit";
 
 export default function Pages() {
     const ctrl = useController<never, PagesController>(PagesController);
-    const sidebarStore = useProvider<SidebarStore>(SidebarStore);
-    const url = sidebarStore.state.url.value;
+    const pageStore = useProvider<PageStore>(PageStore);
+    const url = pageStore.state.url.value;
 
     return (
       <PagesContext.Provider value={ctrl}>
@@ -23,8 +23,8 @@ export default function Pages() {
             </Link>
           </div>
           <ul class="menu w-full rounded-box">
-            {sidebarStore.state.pages.value.map((page) => {
-              const isActive = SidebarStore.isActivePage(url, page.id);
+            {pageStore.state.pages.value.map((page) => {
+              const isActive = PageStore.isActivePage(url, page.id);
 
               const title = page.article?.title || page.title || "Loading"; 
 
