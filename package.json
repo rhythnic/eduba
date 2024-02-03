@@ -10,6 +10,7 @@
     "make": "electron-forge make",
     "publish": "electron-forge publish",
     "lint": "eslint --ext .ts,.tsx .",
+    "testnet": "node ./scripts/testnet.js",
     "wdio": "wdio run ./wdio.conf.ts"
   },
   "keywords": [],

@@ -26,7 +26,9 @@ export default function Sidebar() {
       >
         <XMarkIcon class="h-6 w-6 text-current" />
       </label>
-      <div class="tabs tabs-bordered mb-2 p-2">
+      <div
+        id="sidebar-tabs"
+        class="tabs tabs-bordered mb-2 p-2">
         {navTabs.map((navTab) => (
           <a
             key={navTab.tab}

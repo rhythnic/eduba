@@ -96,7 +96,10 @@ export default function UserMenu() {
           )}
           {sessionActive && (
             <li>
-              <a onClick={ctrl.signOut}>
+              <a
+                onClick={ctrl.signOut}
+                data-testid="sign-out"
+              >
                 <ArrowRightStartOnRectangleIcon class="w-6 h-6 text-inherit" /> sign
                 out
               </a>
