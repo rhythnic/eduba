@@ -134,7 +134,7 @@ export default function Auth() {
         </form>
       </Modal>
 
-      <button onClick={ctrl.openModal} class="btn btn-primary block">
+      <button onClick={ctrl.openModal} class="btn btn-primary block m-8">
         Sign In
       </button>
     </>

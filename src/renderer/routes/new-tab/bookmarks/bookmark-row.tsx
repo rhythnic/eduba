@@ -3,7 +3,7 @@ import { useContext } from "preact/hooks";
 import { BookmarkIcon, FolderIcon } from "@heroicons/react/24/solid";
 import TabLink from "@/renderer/components/tab-link";
 import { styles } from "@/renderer/utils";
-import { SidebarBookmarksContext, SidebarBookmarksController } from "./sidebar-bookmarks.ctrl";
+import { BookmarksContext, BookmarksController } from "./bookmarks.ctrl";
 
 export interface BookmarkRowProps {
   bookmark: any;
@@ -11,7 +11,7 @@ export interface BookmarkRowProps {
 }
 
 export default function BookmarkRow({ bookmark, class: className = "" }: BookmarkRowProps) {
-  const ctrl = useContext<SidebarBookmarksController>(SidebarBookmarksContext);
+  const ctrl = useContext<BookmarksController>(BookmarksContext);
 
   const isFolder = bookmark.type === "folder";
 
@@ -30,7 +30,7 @@ export default function BookmarkRow({ bookmark, class: className = "" }: Bookmar
       {bookmark.title}
     </a>
   ) : (
-    <TabLink href={bookmark.href} newTab={true} class="flex-1">
+    <TabLink href={bookmark.href} class="flex-1">
       {bookmark.title}
     </TabLink>
   );

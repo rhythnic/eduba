@@ -1,7 +1,5 @@
 import { h } from "preact";
 import ArticleViewer from "../../components/article-viewer/article-viewer";
-import BookmarkEdit from "../../components/bookmark-edit/bookmark-edit";
-import ArticlePageMenu from "./article-page-menu";
 import { useController } from "../../hooks/use-controller.hook";
 import {
   ArticlePageController,
@@ -19,16 +17,8 @@ export default function ArticlePage(props: ArticlePageProps) {
     <ArticlePageContext.Provider value={ctrl}>
       <main class="page p-4" key={props.pageId}>
         <Loading loading={ctrl.loading.value} text="Loading">
-          <div class="flex justify-end items-center mb-4">
-            <ArticlePageMenu />
-          </div>
-          <ArticleViewer markdown={ctrl.displayMarkdown} />
+          <ArticleViewer markdown={ctrl.displayMarkdown} class="my-8" />
         </Loading>
-        <BookmarkEdit
-          bookmarkSignal={ctrl.state.bookmarkInEdit}
-          disableHrefEdit={true}
-          onDone={ctrl.handleBookmarkEditDone}
-        />
       </main>
     </ArticlePageContext.Provider>
   );

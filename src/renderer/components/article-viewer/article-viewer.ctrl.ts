@@ -1,5 +1,5 @@
 import { ComponentController } from "@/renderer/controllers/component.ctrl";
-import { AppStore, NavStore } from "@/renderer/stores";
+import { AppStore, PageStore } from "@/renderer/stores";
 import { Signal } from "@preact/signals";
 import { inject, injectable } from "inversify";
 import { createRef } from "preact";
@@ -7,6 +7,7 @@ import { createRef } from "preact";
 const articleLinkRgx = /^\/?([0-9a-z]{52})\/articles\/([0-9a-z]+)$/i;
 
 export interface ArticleViewerProps {
+  class?: string;
   markdown: Signal
 }
 
@@ -16,7 +17,7 @@ export class ArticleController extends ComponentController<ArticleViewerProps>{
 
     constructor(
         @inject(AppStore) private readonly appStore: AppStore,
-        @inject(NavStore) private readonly navStore: NavStore
+        @inject(PageStore) private readonly pageStore: PageStore
     ) {
       super();
     }
@@ -61,7 +62,7 @@ export class ArticleController extends ComponentController<ArticleViewerProps>{
         if (articleLinkRgx.test(href)) {
           // Open article in same tab
           href = href.startsWith("/") ? href.slice(1) : href;
-          this.navStore.insertPage({ href }, false);
+          this.pageStore.addPage({ href });
           return;
         }
       } catch (err) {

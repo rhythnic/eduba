@@ -1,4 +1,4 @@
-import { AlertEvent } from "@/events/renderer/AlertEvent";
+import { AlertEvent } from "@/events/renderer";
 import { AlertType } from "@/enums";
 import { inject, injectable } from "inversify";
 import { Emitter } from "@/lib/emitter";

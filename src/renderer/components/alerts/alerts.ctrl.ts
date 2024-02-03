@@ -1,7 +1,7 @@
 import { inject, injectable } from "inversify";
 import { Emitter } from "@/lib/emitter";
 import { TYPES } from "@/renderer/di";
-import { AlertEvent } from "@/events/renderer/AlertEvent";
+import { AlertEvent } from "@/events/renderer";
 import { signalState } from "@/lib/signal-state";
 import { ComponentController } from "@/renderer/controllers/component.ctrl";
 

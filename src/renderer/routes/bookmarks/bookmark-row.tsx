@@ -32,7 +32,7 @@ export default function BookmarkRow({ bookmark, showMenu, class: className = "" 
       {bookmark.title}
     </a>
   ) : (
-    <TabLink href={bookmark.href} newTab={true} class="flex-1">
+    <TabLink href={bookmark.href} class="flex-1">
       {bookmark.title}
     </TabLink>
   );

@@ -31,12 +31,8 @@ export interface BookmarksControllerState {
   clippedBookmark: Clipped;
 }
 
-export interface BookmarksPageProps {
-  pageId: string;
-}
-
 @injectable()
-export class BookmarksPageController extends ComponentController<BookmarksPageProps> {
+export class BookmarksPageController extends ComponentController<never> {
   public state = signalState<BookmarksControllerState>(
     {
       openFolderPath: [],
@@ -75,10 +71,6 @@ export class BookmarksPageController extends ComponentController<BookmarksPagePr
         this.bookmarkStore.state.bookmarks.value.find((x) => x._id === id)
       );
     });
-  }
-
-  initialize(props: BookmarksPageProps): void {
-    this.state._configure({ storage: this.storage, key: props.pageId });
   }
 
   closeOpenFolder = () => {
