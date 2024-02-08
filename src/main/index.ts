@@ -27,13 +27,16 @@ if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
+// Configure logger
 log.initialize({ preload: true });
 
+// Register Eduba scheme
 protocol.registerSchemesAsPrivileged([
   { scheme: "eduba", privileges: { bypassCSP: true, stream: true } },
 ]);
 
-const createWindow = (): void => {
+// Create window
+function createWindow() {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     height: 600,
@@ -44,7 +47,7 @@ const createWindow = (): void => {
     icon: icon
   });
 
-  // Expose the IPC Api and wire up common events
+  // Wire up API and event passing to/from renderer
   const ipcApi = new IpcApiMain(diContainer);
   ipcApi.listen(mainWindow.webContents);
 
@@ -54,8 +57,8 @@ const createWindow = (): void => {
     return { action: "deny" };
   });
 
-  // Using http protocol for eduba scheme downloads because will-download
-  // didn't fire for the eduba protocol.
+  // Using http scheme for eduba scheme downloads because will-download
+  // didn't fire for the eduba scheme.
   mainWindow.webContents.session.on(
     'will-download',
     async (event: Event, item: DownloadItem) => {
@@ -76,7 +79,7 @@ const createWindow = (): void => {
 
   // and load the index.html of the app.
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
-};
+}
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -85,23 +88,22 @@ app.on('ready', async () => {
   try {
     const fileMigrationService = diContainer.get<FileMigrationService>(FileMigrationService);
     await fileMigrationService.run();
-
+  
     await bindFileDependentProviders(diContainer);
-
+  
     const eventBinder = new EventBinder(diContainer);
     eventBinder.bindHandlers();
-
+  
     await diContainer.get<UserService>(TYPES.UserService).resumeExistingSession();
-
+  
     createWindow();
-
-    log.scope("App ready handler").log("App started");
-
+  
     diContainer.get<EdubaScheme>(EdubaScheme).registerHandler();
-
+  
     appIsReady = true;
   } catch (err) {
-    log.scope("App ready handler").error(err);
+    log.error("App ready handler error", err);
+    process.exit(1);
   }
 });
 

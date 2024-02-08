@@ -27,7 +27,7 @@ export interface Clipped {
 
 export interface BookmarksControllerState {
   openFolderPath: string[];
-  bookmarkInEdit: any;
+  bookmarkInEdit: CreateBookmarkRequest;
   clippedBookmark: Clipped;
 }
 

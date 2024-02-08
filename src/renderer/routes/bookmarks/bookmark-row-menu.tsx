@@ -1,10 +1,11 @@
 import { useContext } from "preact/hooks";
 import { EllipsisVerticalIcon } from "@heroicons/react/24/solid";
 import { BookmarksPageContext, BookmarksPageController } from "./bookmarks-page.ctrl";
+import { BookmarkDto } from "@/dtos/response/interfaces";
 
 export interface BookmarkRowMenuProps {
     isFolder: boolean;
-    bookmark: any;
+    bookmark: BookmarkDto;
 }
 
 export function BookmarkRowMenu({ isFolder, bookmark }: BookmarkRowMenuProps) {

@@ -2,7 +2,6 @@ import { signalState } from "@/lib/signal-state";
 import log, { LogFunctions } from "electron-log";
 import { inject, injectable } from "inversify";
 import { TYPES } from "@/renderer/di/types";
-import { AppStore } from "./app.store";
 import { IRoute } from "../types";
 import { RouterOnChangeArgs } from "preact-router";
 import { ArticleDto, PopulatedPublisherDto } from "@/dtos/response/interfaces";
@@ -38,7 +37,6 @@ export class PageStore {
 
     constructor(
         @inject(TYPES.LocalStorage) private readonly storage: Storage,
-        @inject(AppStore) private readonly appStore: AppStore,
         @inject(TYPES.Route) private readonly route: IRoute,
         @inject(TYPES.Events) private readonly events: Emitter
     ) {
