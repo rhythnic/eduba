@@ -5,8 +5,7 @@ import { TYPES } from "@/renderer/di/types";
 import { IRoute } from "../types";
 import { RouterOnChangeArgs } from "preact-router";
 import { ArticleDto, PopulatedPublisherDto } from "@/dtos/response/interfaces";
-import { Emitter } from "@/lib/emitter";
-import { PageAddedEvent } from "@/events/renderer";
+import { AppStore, SidebarTab } from "./app.store";
 
 export interface Page {
     id: string;
@@ -38,7 +37,7 @@ export class PageStore {
     constructor(
         @inject(TYPES.LocalStorage) private readonly storage: Storage,
         @inject(TYPES.Route) private readonly route: IRoute,
-        @inject(TYPES.Events) private readonly events: Emitter
+        @inject(AppStore) private readonly appStore: AppStore
     ) {
         this.state._configure({ storage: this.storage, key: "PageStore" })
             .then(() => {
@@ -54,7 +53,7 @@ export class PageStore {
         
         this.routeToPage(page);
 
-        this.events.dispatch(new PageAddedEvent());
+        this.appStore.setSidebarTab(SidebarTab.Pages);
     }
 
     closePage = (pageId: string): void => {
