@@ -92,7 +92,6 @@
     "reflect-metadata": "^0.2.1",
     "stream-to-array": "^2.3.0",
     "superstruct": "^1.0.3",
-    "tiny-secp256k1": "^2.2.3",
     "z32": "^1.0.1"
   }
 }
