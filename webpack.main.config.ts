@@ -25,16 +25,13 @@ export const mainConfig: Configuration = {
     new DefinePlugin({
       DHT_BOOTSTRAP_NODES: process.env.DHT_BOOTSTRAP_NODES,
       APP_DATA_DIRECTORY: process.env.APP_DATA_DIRECTORY
-    })
+    }),
   ],
   resolve: {
     extensions: ['.js', '.ts', '.jsx', '.tsx', '.css', '.json'],
     alias: {
-      "@":  resolve(__dirname, 'src/'),
+      "@":  resolve(__dirname, 'src'),
       "package-json": resolve(__dirname, "package.json")
     }
-  },
-  externals: {
-    'usb': 'usb'
   }
 };

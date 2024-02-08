@@ -3,17 +3,16 @@ import Auth from "./auth/auth";
 import Backup from "./backup/backup";
 import { useController } from "../../../hooks/use-controller.hook";
 import { UserMenuContext, UserMenuController } from "./user-menu.ctrl";
-import { ArrowRightStartOnRectangleIcon, PlusIcon } from "@heroicons/react/24/solid";
-import { useProvider } from "@/renderer/hooks";
-import { AuthStore } from "@/renderer/stores";
-import NewPublisher from "./new-publisher/new-publisher";
 import {
+  ArrowRightStartOnRectangleIcon,
+  PlusIcon,
   EllipsisVerticalIcon,
   PlusCircleIcon,
   SignalIcon,
-  SignalSlashIcon,
-} from "@heroicons/react/24/solid";
-import { PublisherStore } from "@/renderer/stores";
+  SignalSlashIcon } from "@heroicons/react/24/solid";
+import { useProvider } from "@/renderer/hooks";
+import { AuthStore, PublisherStore } from "@/renderer/stores";
+import NewPublisher from "./new-publisher/new-publisher";
 import TabLink from "@/renderer/components/tab-link";
 
 export default function UserMenu() {

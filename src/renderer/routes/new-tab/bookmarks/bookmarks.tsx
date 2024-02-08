@@ -1,6 +1,5 @@
 import { h } from "preact";
 import { PencilSquareIcon } from "@heroicons/react/24/solid";
-import TabLink from "@/renderer/components/tab-link";
 import { useProvider } from "@/renderer/hooks/use-provider.hook";
 import { useController } from "@/renderer/hooks/use-controller.hook";
 import { AuthStore } from "@/renderer/stores";

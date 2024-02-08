@@ -5,9 +5,10 @@ import TabLink from "@/renderer/components/tab-link";
 import { styles } from "@/renderer/utils";
 import { BookmarkRowMenu } from "./bookmark-row-menu";
 import { BookmarksPageContext, BookmarksPageController } from "./bookmarks-page.ctrl";
+import { BookmarkDto } from "@/dtos/response/interfaces";
 
 export interface BookmarkRowProps {
-  bookmark: any;
+  bookmark: BookmarkDto;
   showMenu: boolean;
   class?: string;
 }

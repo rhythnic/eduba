@@ -11,7 +11,7 @@ export default function Alerts() {
   return (
     <div class="toast toast-center">
       {ctrl.state.alerts.value.map((alert) => {
-        let actionBtn: VNode<any>;
+        let actionBtn: VNode<HTMLButtonElement>;
 
         if (alert.action) {
           actionBtn = (

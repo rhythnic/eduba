@@ -1,5 +1,5 @@
 import { generateMnemonic, validateMnemonic, mnemonicToSeedSync } from "bip39";
-import * as ecc from "tiny-secp256k1";
+import ecc from '@bitcoinerlab/secp256k1';
 import { BIP32Factory } from "bip32";
 import { MneumonicHdWalletParams, MneumonicHdWalletSignMessageParams } from "../types";
 import { MneumonicHdWalletBase } from "../base/mneumonic.hd-wallet.base";
@@ -53,7 +53,6 @@ export class MneumonicHdWalletCore extends MneumonicHdWalletBase {
 
     switch (bip44Params.chain) {
       case 0: {
-        // const bitcoin = await import("bitcoinjs-lib");
         const bitcoinMessage = await import("bitcoinjs-message");
 
         const seed = mnemonicToSeedSync(phrase);

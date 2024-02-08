@@ -4,9 +4,10 @@ import { BookmarkIcon, FolderIcon } from "@heroicons/react/24/solid";
 import TabLink from "@/renderer/components/tab-link";
 import { styles } from "@/renderer/utils";
 import { BookmarksContext, BookmarksController } from "./bookmarks.ctrl";
+import { BookmarkDto } from "@/dtos/response/interfaces";
 
 export interface BookmarkRowProps {
-  bookmark: any;
+  bookmark: BookmarkDto;
   class?: string;
 }
 

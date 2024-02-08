@@ -2,11 +2,11 @@ import { HdWalletParams, HdWalletSignMessageParams } from "../types";
 import { HdWalletBase } from "./hd-wallet.base";
 
 export class MneumonicHdWalletBase extends HdWalletBase {
-  public addressForPath(request: HdWalletParams): Promise<string>{
+  public addressForPath(_request: HdWalletParams): Promise<string>{
     throw new Error("Not Implemented");
   }
 
-  public signMessage(request: HdWalletSignMessageParams): Promise<string> {
+  public signMessage(_request: HdWalletSignMessageParams): Promise<string> {
       throw new Error("Not Implemented");
   }
 

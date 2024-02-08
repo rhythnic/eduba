@@ -17,7 +17,7 @@ export const rendererConfig: Configuration = {
   resolve: {
     extensions: ['.js', '.ts', '.jsx', '.tsx', '.css'],
     alias: {
-      "@":  resolve(__dirname, 'src/'),
+      "@":  resolve(__dirname, 'src'),
       "react": "preact/compat",
       "react-dom/test-utils": "preact/test-utils",
       "react-dom": "preact/compat",     // Must be below test-utils
