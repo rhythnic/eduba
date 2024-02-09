@@ -1,5 +1,5 @@
 import { h } from "preact";
-import { EllipsisVerticalIcon, PlusIcon, XMarkIcon } from "@heroicons/react/24/solid";
+import { PlusIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import { Link } from "preact-router/match";
 import { useController, useProvider } from "@/renderer/hooks";
 import { PageStore } from "@/renderer/stores";
@@ -40,12 +40,7 @@ export default function Pages() {
                     {title}
                   </Link>
                   {isActive &&
-                    <div class="dropdown dropdown-bottom dropdown-end mx-1 px-2">
-                    <label tabIndex={0} class="cursor-pointer">
-                      <EllipsisVerticalIcon class="w-5 h-5 text-inherit" />
-                    </label>
                     <PageMenu page={page} />
-                  </div>
                   }
                   <button
                     class={styles({
