@@ -21,7 +21,7 @@ export default function Sidebar() {
   const selectedTab = appStore.state.sidebarTab.value;
 
   return (
-    <section class="w-96 flex flex-col h-full">
+    <section class="w-96 flex flex-col h-full bg-base-300 overflow-y-auto">
       <label
         htmlFor="sidebar-drawer"
         class="btn btn-ghost btn-circle lg:hidden self-end"
