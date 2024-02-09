@@ -1,4 +1,5 @@
 import { type Configuration, DefinePlugin } from 'webpack';
+import CopyPlugin from "copy-webpack-plugin";
 import { rules } from './webpack.rules';
 import { plugins } from './webpack.plugins';
 import { resolve } from 'node:path';
@@ -17,6 +18,9 @@ export const mainConfig: Configuration = {
     filename: '[name].js',
   },
   // Put your normal webpack config below here
+  externals: {
+    "usb": "commonjs2 usb"
+  },
   module: {
     rules,
   },
@@ -26,6 +30,18 @@ export const mainConfig: Configuration = {
       DHT_BOOTSTRAP_NODES: process.env.DHT_BOOTSTRAP_NODES,
       APP_DATA_DIRECTORY: process.env.APP_DATA_DIRECTORY
     }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: resolve(__dirname, "node_modules", "usb"),
+          to: resolve(__dirname, ".webpack", "node_modules", "usb")
+        },
+        {
+          from: resolve(__dirname, "node_modules", "node-gyp-build"),
+          to: resolve(__dirname, ".webpack", "node_modules", "node-gyp-build")
+        }
+      ]
+    })
   ],
   resolve: {
     extensions: ['.js', '.ts', '.jsx', '.tsx', '.css', '.json'],
