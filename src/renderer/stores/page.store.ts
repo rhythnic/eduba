@@ -91,7 +91,7 @@ export class PageStore {
         let pages = this.state.pages.peek()
         const pageIndex = pages.findIndex(p => p.id === pageId);
 
-        if (pageIndex < 1) {
+        if (pageIndex < 0) {
             this.addPage(data);
             return;
         }
