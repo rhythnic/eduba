@@ -54,3 +54,12 @@ eduba$ node ./scripts/testnet.js
 - Default is "3000"
 - Must be unique for each peer
 - Optional if only running one peer
+
+
+## Feature Flags
+
+To enable a feature flag, set it to "true".
+
+### FEATURE_BACKUP
+
+Enable the signed in user to backup and restore data.

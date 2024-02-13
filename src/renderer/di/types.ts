@@ -1,4 +1,5 @@
 export const TYPES = {
+    RendererConfig: Symbol.for("RendererConfig"),
     Events: Symbol.for("Events"),
     Document: Symbol.for("Document"),
     LocalStorage: Symbol.for("LocalStorage"),

@@ -14,12 +14,15 @@ import { useProvider } from "@/renderer/hooks";
 import { AuthStore, PublisherStore } from "@/renderer/stores";
 import NewPublisher from "./new-publisher/new-publisher";
 import TabLink from "@/renderer/components/tab-link";
+import { RendererConfig } from "@/renderer/config/config";
+import { TYPES } from "@/renderer/di";
 
 export default function UserMenu() {
   const ctrl = useController<never, UserMenuController>(UserMenuController);
   
   const authStore = useProvider<AuthStore>(AuthStore);
   const publisherStore = useProvider<PublisherStore>(PublisherStore);
+  const rendererConfig = useProvider<RendererConfig>(TYPES.RendererConfig);
 
   const sessionActive = authStore.state.sessionActive.value;
 
@@ -88,7 +91,7 @@ export default function UserMenu() {
           </ul>
         </div>
         <ul className="menu w-full rounded-box">
-          {sessionActive && (
+          {rendererConfig.feature.Backup && sessionActive && (
             <li>
               <a onClick={ctrl.openBackup}>Backup / Restore</a>
             </li>

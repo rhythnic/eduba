@@ -1,4 +1,4 @@
-import type { Configuration } from 'webpack';
+import { type Configuration, DefinePlugin } from 'webpack';
 
 import { rules } from './webpack.rules';
 import { plugins } from './webpack.plugins';
@@ -13,7 +13,12 @@ export const rendererConfig: Configuration = {
   module: {
     rules,
   },
-  plugins,
+  plugins: [
+    ...plugins,
+    new DefinePlugin({
+      'process.env.FEATURE_BACKUP':  JSON.stringify(process.env.FEATURE_BACKUP || ''),
+    })
+  ],
   resolve: {
     extensions: ['.js', '.ts', '.jsx', '.tsx', '.css'],
     alias: {
