@@ -2,6 +2,7 @@ import { useContext } from "preact/hooks";
 import { EllipsisVerticalIcon } from "@heroicons/react/24/solid";
 import { BookmarksPageContext, BookmarksPageController } from "./bookmarks-page.ctrl";
 import { BookmarkDto } from "@/dtos/response/interfaces";
+import { BookmarkType } from "@/enums";
 
 export interface BookmarkRowMenuProps {
     isFolder: boolean;
@@ -37,11 +38,13 @@ export function BookmarkRowMenu({ isFolder, bookmark }: BookmarkRowMenuProps) {
             Cut
           </a>
         </li>
+        {bookmark.type === BookmarkType.Bookmark &&
         <li>
           <a data-id={bookmark._id} onClick={ctrl.copyBookmark}>
             Copy
           </a>
         </li>
+        }
       </ul>
     </div>
   );
