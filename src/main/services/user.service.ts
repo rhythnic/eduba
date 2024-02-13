@@ -112,7 +112,6 @@ export class UserService {
     await userBee.ready();
 
     this._sessionDbId = userBee.id;
-    this.log.debug("session hyperbee", userBee.id);
 
     this.events.dispatch(new SessionStatusChangeEvent(SessionStatus.Active));
   }

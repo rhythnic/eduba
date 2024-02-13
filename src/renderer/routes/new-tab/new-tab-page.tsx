@@ -22,16 +22,16 @@ export default function NewTabPage(props: NewTabPageProps) {
           <label class="label">
             <span class="label-text">Paste share link</span>
           </label>
-          <div class="join">
+          <div class="flex items-center">
             <input
               type="text"
               name="href"
               value={ctrl.form.state.href.value}
-              class="join-item input input-bordered w-full invalid:input-error"
+              class="input input-bordered w-full invalid:input-error mr-1"
               onInput={ctrl.form.handleInput}
               required
             />
-            <button class="btn join-item">Go</button>
+            <button class="btn">Go</button>
           </div>
         </div>
       </form>

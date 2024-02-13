@@ -16,7 +16,9 @@
         "cwd": "${workspaceFolder}",
         "console": "integratedTerminal",
         "env": {
-          "APP_DATA_DIRECTORY": "/home/rhythnic/code/rhythnic/eduba/data"
+          "APP_DATA_DIRECTORY": "/home/rhythnic/code/rhythnic/eduba/data/me",
+          "LOG_LEVEL":"debug",
+          "DHT_BOOTSTRAP_NODES": "127.0.0.1:49737"
         }
       }
     ]

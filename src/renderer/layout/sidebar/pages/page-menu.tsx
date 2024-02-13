@@ -54,14 +54,16 @@ export default function PageMenu(props: PageMenuProps) {
       );
     }
 
-    listItems.push(
-      <li>
-        <a onClick={() => ctrl.openEditBookmark(props.page)}>
-          <BookmarkIcon class="w-6 h-6 text-inherit" />
-          Bookmark
-        </a>
-      </li>
-    )
+    if (article) {
+      listItems.push(
+        <li>
+          <a onClick={() => ctrl.openEditBookmark(props.page)}>
+            <BookmarkIcon class="w-6 h-6 text-inherit" />
+            Bookmark
+          </a>
+        </li>
+      )
+    }
 
     if(isPublisherArticle && !publisher._subscribed && !publisher._writable) {
       listItems.push(
