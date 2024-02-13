@@ -6,6 +6,7 @@
   "main": ".webpack/main",
   "scripts": {
     "start": "export $(cat .env | xargs) && electron-forge start",
+    "start:peer": "export $(cat .env.peer | xargs) && electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
