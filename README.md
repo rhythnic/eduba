@@ -14,9 +14,14 @@
 </picture>
 
 ## About
+
 Eduba is a protocol for publishing linked articles peer-to-peer on the [Holepunch platform][holepunch].
 
 In this repository is the initial proof of concept client. It is a desktop application built on [Electron][electron].
+
+## Notice
+
+I've been working on Eduba for many nights, and I'm taking some time off for other things that I need to do.  When I resume working on Eduba, I expect to redesign some fundamentals regarding sign in and key derivation, possibly based on [Farcaster][farcaster].  This would enable key rotation, a necessary requirement.
 
 ## Run
 
@@ -28,16 +33,6 @@ yarn start
 Files are saved in the default application data directory for your OS.
 
 ## Use
-
-### Browse
-You should be able to access these publishers. Enter one of these links in the new-page text field.
-
-#### Eduba (Intro, protocol, releases)
-
-bsk483aq99zputxmmguj3oxjtj79umq66xe9zixd1s8qrhhta34o/articles/1701224812473
-
-#### Example Articles
-1huqogtdh3mm9wh7f4nehcbzx8indrtijo4z7fkorrgtrf6w1n8o/articles/1701224891736
 
 ### Sign In
 Signing in allows you to publish articles, save bookmarks, and subscribe to publishers.  Eduba uses your login credentials to generate the identifiers of the publishers that you create.  To ensure that your publishers' identifiers are unique, Eduba uses recovery phrases and hardware wallets for signing in, as is common in cryptocurrency.  Eduba supports Ethereum and Bitcoin addresses, where each address is a unique user.  You are not required to be familiar with cryptocurrency to use Eduba.  Just click on the icon for generating a phrase, save it as you would a password, and use it to sign in.
@@ -71,3 +66,4 @@ This application is in alpha. Do not trust it to be a reliable store of data. Ke
 [electron]: https://electronjs.org
 [electron_forge]: https://www.electronforge.io/
 [hyperswarm]: https://docs.holepunch.to/building-blocks/hyperswarm
+[farcaster]: https://www.farcaster.xyz/
