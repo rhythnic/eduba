@@ -31,10 +31,10 @@ Download and run the package for your OS from the releases page.
 
 Try loading these pages:
 
-Eduba Protocol Overview
+#### Eduba Protocol Overview
 dowoi6c8b5fp5rky4dbkn9kun4uk9x4ygtb6sowu6ujcr5i4wj9o/articles/1710785242545
 
-Article Examples
+#### Article Examples
 xzx4qyfgsyyc67efe67zmbh6i9dtqk1drkbzrx1ewtjxp9dzz73o/articles/1710785896818
 
 ### Sign In
