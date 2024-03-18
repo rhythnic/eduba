@@ -25,7 +25,7 @@ I've been working on Eduba for many nights, and I'm taking some time off for oth
 
 ## Use
 
-Download and run the package for your OS from the releases page.
+Download and run the package for your OS from the [releases page](https://github.com/rhythnic/eduba/releases).
 
 ### Load Examples
 
