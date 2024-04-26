@@ -13,15 +13,15 @@
         src="https://github.com/rhythnic/eduba/assets/8162640/57c04d5d-f65a-4e45-931a-36ed5ea35cff">
 </picture>
 
+## Update - Repo moved
+
+This project has moved to [here](https://github.com/eduba-protocol/eduba-desktop)
+
 ## About
 
 Eduba is a protocol for publishing linked articles peer-to-peer on the [Holepunch platform][holepunch].
 
 In this repository is the initial proof of concept client. It is a desktop application built on [Electron][electron].
-
-## Notice
-
-I've been working on Eduba for many nights, and I'm taking some time off for other things that I need to do.  When I resume working on Eduba, I expect to redesign some fundamentals regarding sign in and key derivation, possibly based on [Farcaster][farcaster].  This would enable key rotation, a necessary requirement.  This change would likely not be backwards compatible, meaning any publishers created before the change would have to be re-created with new IDs.
 
 ## Use
 
